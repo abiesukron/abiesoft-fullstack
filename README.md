@@ -1,20 +1,21 @@
-# AbieSoft Api
+# AbieSoft Fullstack
 Tool ini digunakan untuk mengelola database mysql. Tool simpel ini memungkinkan kita mengelola beberapa fitur sederhana yang tersedia di DBMS seperti membuat tabel atau menghapus tabel, mengimport tabel, membackup data, merestore data dan atau mereset data.
 
-# Install
+### Install
 Silahkan cloning dulu source codenya bisa download, atau cloning dengan cara berikut :
 ```
 git clone https://github.com/abiesukron/abiesoft-api 
 ```
 
-# Konfigurasi
+### Konfigurasi
 Buat file <code>.env</code> menggunakan <code>.env_sample</code> lalu atur konfigurasinya sesuai dengan database yang kita gunakan. Kemudian buka <code>Command Prompt</code> atau <code>Window PowerShell</code> untuk menjalankan code berikut :
 ```
 php abiesoft help
 ```
 Jika sudah menampilkan help dari tool abiesoft, maka tool ini siap digunakan.
 
-# Membuat Schema Tabel
+# Database
+### Membuat Schema Tabel
 Perintah untuk membuat sebuah schema tabel adalah sebagai berikut. Sebagai contoh kita akan membuat schema tabel untuk <code>users</code>, maka perintahnya adalah :
 ```
 php abiesoft make:schema users
@@ -60,7 +61,7 @@ $create->buattabel();
 
 ```
 
-# Membuat Kolom Di Schema Tabel
+### Membuat Kolom Di Schema Tabel
 Sebelum kita membuat kolom untuk tabel users, berikut adalah hal-hal yang perlu diperhatikan untuk menulis kolom di schema tabel.
 | Nama | Keterangan | Opsi |
 | --- | --- | --- |
@@ -199,7 +200,7 @@ $create->buattabel();
 
 ```
 
-# Mengimport tabel
+### Mengimport tabel
 Untuk mengimport tabel gunakan perintah berikut :
 ```
 php abiesoft db:import
@@ -213,7 +214,7 @@ Total: 1 tabel
 ```
 Ketika kita menjalankan perintah ini, sistem akan membuatkan secara otomatis tabel <code>migrasi</code> sebagai tempat untuk menyimpan catatan tabel mana saja yang sudah diimport dan tabel mana yang belum diimport. jadi ketika kita menjalankan tabel import ini berulang tidak akan menimpa tabel yang sudah pernah kita import dan hanya akan mengimport tabel yang belum diimport saja.
 
-# Membackup data
+### Membackup data
 Untuk membackup data gunakan perintah berikut :
 ```
 php abiesoft db:backup
@@ -235,7 +236,7 @@ Lokasi: backup/abiesoft_01_12_2023_01
 ```
 Perintah backup ini hanya membackup tabel yang sudah berisi data.
 
-# Merestore Data
+### Merestore Data
 Merestore atau memulihkan data, gunakan perintah berikut :
 ```
 php abiesoft db:restore
@@ -255,7 +256,7 @@ Sukses!
 Total: 1 tabel dipulihkan
 ```
 
-# Mereset Ulang Data
+### Mereset Ulang Data
 Mereset ulang data, gunakan perintah berikut :
 ```
 php abiesoft db:refresh
@@ -270,13 +271,15 @@ Sukses!
 Total: 1 tabel 
 ```
 
-# Menjalankan server di localhost
+# Server Local
+### Menjalankan server di localhost
 Untuk menjalankan server dilocalhost, gunakan perintah berikut :
 ```
 php abiesoft start
 ```
 
-# Melihat route yang tersedia
+# Route
+### Melihat route yang tersedia
 Untuk melihat route yang tersedia, gunakan perintah berikut :
 ```
 php abiesoft info route
@@ -295,7 +298,7 @@ No    Route                                                   Method
 7.    /api/test  ------------------------------------------   DELETE 
 ```
 
-# Menambahkan route
+### Menambahkan route
 Buka konfigurasi route di folder <code>config/route.yaml</code>
 
 Untuk membuat route default gunakan kode <code>route:</code>. contoh kita membuat route <code>test</code>, maka :
@@ -319,7 +322,7 @@ csrf:
 | `service` | Class Api yang ada di folder `service/Api/CsrfApi.php` |
 | `function` | Function di Class Api yang ada di folder `service/Api/CsrfApi.php` |
 
-# Setup Abiesoft di front end
+### Setup Abiesoft di front end
 Copykan kode js berikut ke index frontend.
 ```
 <script>
