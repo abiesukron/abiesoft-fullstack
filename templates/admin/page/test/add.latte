@@ -1,0 +1,29 @@
+{layout '../../main.latte'}
+{block title}{$title}{/block}
+{block content}
+<div class='card container'>
+    <div class='card-body'>
+        <form method='post' id='formInput' name='formInput'>
+            <div class='form-grup'>
+                <label for='email'>Email</label>
+                <input class='form-control' id='email' name='email' placeholder='Contoh: email@email.com'>
+            </div>
+            <div class='form-grup'>
+                <label for='password'>Password</label>
+                <input data-tipe='password' class='form-control' id='password' name='password' placeholder='Masukan Password'>
+            </div>
+            <div class='form-grup'>
+                <label for='jeniskelamin'>Jenis Kelamin</label>
+                <select data-tipe='select' class='form-control' id='jeniskelamin' name='jeniskelamin'>
+                    <option value=''>Pilih Jenis Kelamin</option>
+                    <option value='laki-laki'>Laki-laki</option>
+                    <option value='perempuan'>Perempuan</option>
+                </select>
+            </div>
+            <div class='form-single-button'>
+                <button>Sign up</button>
+            </div>
+        </form>
+    </div>
+</div>
+{/block}

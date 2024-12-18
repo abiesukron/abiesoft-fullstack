@@ -1,0 +1,81 @@
+@import './style.css';
+
+/*
+    Form Element
+*/
+
+.form-grup {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form-grup label{
+    display: block;
+    margin-bottom: 7px;
+}
+
+.form-grup .form-control{
+    display: block;
+    width: 100%;
+    padding: 13px;
+    font-weight: 500;
+    border-radius: 8px;
+    border: 1px solid var(--abu);
+}
+
+.form-grup .form-control:hover{
+    border: 1px solid var(--abu2);
+}
+
+.form-grup .form-control:focus{
+    border: 1px solid var(--primary-hover);
+}
+
+.form-single-button > button {
+    width: 100%;
+}
+
+button {
+    cursor: pointer;
+    background-color: var(--primary);
+    color: var(--putih);
+    padding: 13px 30px;
+    font-weight: 500;
+    border-radius: 8px;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+    box-shadow: 5px 10px 10px -12px rgba(27,132,255,0.75);
+    -webkit-box-shadow: 5px 10px 10px -12px rgba(27,132,255,0.75);
+    -moz-box-shadow: 5px 10px 10px -12px rgba(27,132,255,0.75);
+}
+
+
+
+
+
+
+/*
+    Password
+*/
+
+.form-grup svg {
+    position: absolute;
+    width: 20px;
+    right: 15px;
+    top: 37px;
+    color: var(--abu3);
+}
+
+.form-grup svg.action {
+    cursor: pointer;
+}
+
+input::placeholder {
+    color: var(--abu2);
+}
+
+input[data-model='password'].form-control {
+    padding-right: 50px;
+}

@@ -1,0 +1,7 @@
+<?php
+
+use Abiesoft\Resources\Console\Terminal;
+
+require_once __DIR__."/vendor/autoload.php";
+
+new Terminal($argv);
