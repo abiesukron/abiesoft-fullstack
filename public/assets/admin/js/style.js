@@ -17,3 +17,13 @@ function getMeta(metaName) {
 const apikey = getMeta("x-Apikey");
 let Baseurl = getMeta("x-Baseurl");
 let Prefix = getMeta("x-Prefix");
+
+let popup = [];
+
+window.addEventListener("click", (e)=>{
+    Object.entries(popup).forEach(([key, value]) => {
+        if(e.target.dataset.klik != key){
+            value.innerHTML = "";   
+        }
+    });
+});

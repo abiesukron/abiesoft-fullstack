@@ -68,7 +68,15 @@ button:hover {
     color: var(--abu3);
 }
 
-.form-grup svg.action {
+.form-grup .loader-mini {
+    position: absolute;
+    right: 15px;
+    top: 37px;
+    color: var(--abu3);
+}
+
+.form-grup svg.action,
+.form-grup .action {
     cursor: pointer;
 }
 
@@ -76,6 +84,120 @@ input::placeholder {
     color: var(--abu2);
 }
 
-input[data-model='password'].form-control {
+input[data-padding='right-icon'].form-control {
     padding-right: 50px;
+}
+
+
+/*
+    Calender
+*/
+.calender {
+    margin-top: 5px;
+    position: absolute;
+    width: 280px;
+    height: 120px;
+    background-color: var(--putih);
+    border-radius: 8px;
+    z-index: 10;
+    border: 1px solid var(--abu);
+    box-shadow: -2px 2px 12px -2px rgba(89,89,89,0.12);
+    -webkit-box-shadow: -2px 2px 12px -2px rgba(89,89,89,0.12);
+    -moz-box-shadow: -2px 2px 12px -2px rgba(89,89,89,0.12);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.calender > div:nth-child(1) {
+    width: 150px;
+    height: 100px;
+}
+
+.calender > div:nth-child(1) .form-control {
+    border: none;
+    border-radius:8px;
+}
+
+.calender > div:nth-child(1) .form-control:hover {
+    background-color: var(--light);
+}
+
+.calender > div:nth-child(2) {
+    width: 100px;
+    height: 100px;
+    background-color: var(--light);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.calender > div:nth-child(2) > div:nth-child(1) {
+    display: block;
+    background-color: var(--primary);
+    color: var(--putih);
+    text-align: center;
+    padding: 5px 0;
+    font-size: 9pt;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.calender > div:nth-child(2) > div:nth-child(2) {
+    text-align: center;
+    height: 54px;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calender > div:nth-child(2) > div:nth-child(2) > span {
+    font-size: 30pt;
+}
+
+.calender > div:nth-child(2) > div:nth-child(3) {
+    display: block;
+    background-color: var(--abu);
+    text-align: center;
+    padding: 5px 0;
+    font-size: 9pt;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+
+
+
+
+/*
+    Loader Mini
+*/
+
+.loader-mini {
+    width: 20px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 3px solid #514b82;
+    animation:
+    l20-1 0.8s infinite linear alternate,
+    l20-2 1.6s infinite linear;
+}
+
+@keyframes l20-1{
+    0%    {clip-path: polygon(50% 50%,0       0,  50%   0%,  50%    0%, 50%    0%, 50%    0%, 50%    0% )}
+    12.5% {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100%   0%, 100%   0%, 100%   0% )}
+    25%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 100% 100%, 100% 100% )}
+    50%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+    62.5% {clip-path: polygon(50% 50%,100%    0, 100%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+    75%   {clip-path: polygon(50% 50%,100% 100%, 100% 100%,  100% 100%, 100% 100%, 50%  100%, 0%   100% )}
+    100%  {clip-path: polygon(50% 50%,50%  100%,  50% 100%,   50% 100%,  50% 100%, 50%  100%, 0%   100% )}
+}
+
+@keyframes l20-2{ 
+    0%    {transform:scaleY(1)  rotate(0deg)}
+    49.99%{transform:scaleY(1)  rotate(135deg)}
+    50%   {transform:scaleY(-1) rotate(0deg)}
+    100%  {transform:scaleY(-1) rotate(-135deg)}
 }

@@ -10,11 +10,8 @@
     --light: #f0f0f0;
     --font: #181C14;
     --putih: #fff;
-
-    --primary-dark: #181C14;
-    --aksen-dark: #3C3D37;
-    --light-dark: #697565;
-    --font-dark: #ECDFCC;
+    --danger: #C63C51;
+    --success: #009990;
 }
 
 * {
@@ -37,10 +34,16 @@ body {
     color: var(--font);
 }
 
+.text-danger { color: var(--danger); }
+.text-success { color: var(--success); }
+
+.stroke-danger { stroke: var(--danger); }
+.stroke-success { stroke: var(--success); }
+
 .full { width: 100%; }
 
 .container {
-    max-width: 350px;
+    max-width: 450px;
     margin: 50px auto;
 }
 
