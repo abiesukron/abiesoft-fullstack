@@ -214,6 +214,7 @@ if(textarea){
 
             edt.addEventListener("keyup", ()=>{
                 textarea[i].value =  edt.innerHTML;
+                textarea[i].parentElement.classList.remove('form-error');
             });
 
             if(textarea[i].value.split("").length > 0){
@@ -331,6 +332,10 @@ if(tipeelement){
                     }
                 });
 
+                virtual.addEventListener('keyup',()=>{
+                    el("#"+tipeelement[i].id).parentElement.classList.remove('form-error');
+                });
+
             }
 
             /*
@@ -365,14 +370,20 @@ if(tipeelement){
                     if(virtual.value > 0){
                         virtual.value = Number(virtual.value) - Number(1);
                         tipeelement[i].value = Number(virtual.value);
+                        el("#"+tipeelement[i].id).parentElement.classList.remove('form-error');
                     }
                 });
 
                 plus.addEventListener('click', ()=>{
                     virtual.value = Number(virtual.value) + Number(1);
                     tipeelement[i].value = Number(virtual.value);
+                    el("#"+tipeelement[i].id).parentElement.classList.remove('form-error');
                 });
 
+                virtual.addEventListener('keyup',()=>{
+                    tipeelement[i].value = virtual.value;
+                    el("#"+tipeelement[i].id).parentElement.classList.remove('form-error');
+                });
                 
 
             }
@@ -415,6 +426,7 @@ if(tipeelement){
                                             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                         </svg>
                                     `;
+                                    el("#"+tipeelement[i].id).parentElement.classList.remove('form-error');
                                 }else{
                                     at.innerHTML = `
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 stroke-danger">
@@ -433,7 +445,6 @@ if(tipeelement){
                         },800);
                     }
                 });
-
 
             }
 
@@ -480,6 +491,7 @@ if(tipeelement){
                                             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                         </svg>
                                     `;
+                                    el("#"+tipeelement[i].id).parentElement.classList.remove('form-error');
                                 }else{
                                     at.innerHTML = `
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 stroke-danger">
@@ -894,6 +906,7 @@ if(tipeelement){
                 function resulttgl (x) {
                     el("#virtual-"+x).innerHTML =  tglfull['tgl'] + " " + bulanTxt(tglfull['bln']) + " " + tglfull['thn'];
                     el("#"+x).value = tglfull['thn'] + "/" + tglfull['bln'] + "/" + tglfull['tgl'];
+                    el("#"+tipeelement[i].id).parentElement.classList.remove('form-error');
                 }
 
             }
@@ -917,6 +930,10 @@ if(tipeelement){
                         </div>
                     </div>
                 `;
+
+                el("#"+tipeelement[i].id).addEventListener('change', ()=>{
+                    el("#"+tipeelement[i].id).parentElement.classList.remove('form-error');
+                });
             }
 
         }
@@ -924,4 +941,52 @@ if(tipeelement){
     }
 
 
+}
+
+
+
+
+
+
+
+
+
+
+/*
+    Submit Form
+*/
+
+function toSubmit(x){
+    let formID = x.formID;
+    let validasiOpsi = x.validasi;
+    let url = x.submit.url;
+    let tabel = x.submit.tabel;
+    let submitButtonID = x.submit.submitButtonID;
+    let submitButtonLabel = x.submit.submitButtonLabel;
+    let submitButtonLoadingLabel = x.submit.submitButtonLoadingLabel;
+    let messageSuccess = x.submit.messageSuccess;
+    let resetForm = x.submit.resetForm;
+    let focus = x.submit.focus;
+    let consoleResult = false;
+    if(x.submit.consoleResult){
+        consoleResult = x.submit.consoleResult;
+    }
+
+    let form = el('#'+formID);
+
+    form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+
+        let val = validasi({
+            formID: formID,
+            validate: validasiOpsi,
+        });
+
+        if(val){
+            
+            console.log('ok');
+    
+        }
+
+    });
 }

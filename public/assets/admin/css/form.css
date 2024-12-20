@@ -9,6 +9,53 @@
     margin-bottom: 20px;
 }
 
+.form-grup.form-error .form-control {
+    border: 1px solid var(--danger);
+}
+
+.form-grup.form-error svg {
+    stroke: var(--danger);
+}
+
+.form-grup.form-error ::placeholder {
+    color: var(--danger-transparent);
+}
+
+.form-grup.form-error label {
+    color: var(--danger);
+}
+
+.form-grup.form-error .form-control:hover,
+.form-grup.form-error .form-control:focus {
+    border: 1px solid var(--danger);
+}
+
+.form-grup.form-error .form-control {
+    border: 1px solid var(--danger);
+}
+
+.form-grup.form-success svg {
+    stroke: var(--success);
+}
+
+.form-grup.form-success ::placeholder {
+    color: var(--success-transparent);
+}
+
+.form-grup.form-success label {
+    color: var(--success);
+}
+
+.form-grup.form-success .form-control:hover,
+.form-grup.form-success .form-control:focus {
+    border: 1px solid var(--success);
+}
+
+.form-grup.form-success .form-control {
+    border: 1px solid var(--success);
+}
+
+
 .form-grup label{
     display: block;
     margin-bottom: 7px;
@@ -40,11 +87,6 @@
     padding: 6px 15px;
     margin: 1px 0;
     color: var(--putih);
-}
-
-.form-grup .form-control.editor button svg{
-    position: relative;
-    fill: rebeccapurple;
 }
 
 .form-single-button > button {

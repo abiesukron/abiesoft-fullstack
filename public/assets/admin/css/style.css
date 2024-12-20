@@ -10,8 +10,10 @@
     --light: #f0f0f0;
     --font: #181C14;
     --putih: #fff;
-    --danger: #C63C51;
-    --success: #009990;
+    --danger: #e61010;
+    --danger-transparent: rgba(230, 16, 16,.25);
+    --success: #009980;
+    --success-transparent: rgba(0, 153, 128,.5);
 }
 
 * {
