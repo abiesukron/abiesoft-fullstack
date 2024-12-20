@@ -75,8 +75,8 @@ final class Template_e70c7db477 extends Latte\Runtime\Template
                 <label for=\'jeniskelamin\'>Jenis Kelamin</label>
                 <select data-tipe=\'select\' class=\'form-control\' id=\'jeniskelamin\' name=\'jeniskelamin\'>
                     <option value=\'\'>Pilih Jenis Kelamin</option>
-                    <option value=\'laki-laki\'>Laki-laki</option>
-                    <option value=\'perempuan\'>Perempuan</option>
+                    <option value=\'Laki-laki\'>Laki-laki</option>
+                    <option value=\'Perempuan\'>Perempuan</option>
                 </select>
             </div>
             <div class=\'form-grup\'>
@@ -109,15 +109,13 @@ toSubmit({
         \'alamat|setText\'
     ],
     submit: {
-        url: \'surat\',
-        tabel: \'surat\',
-        submitButtonID: \'\',
-        submitButtonLabel: \'Simpan..\',
+        url: \'api/test\',
+        submitButtonID: \'btnSubmit\',
+        submitButtonLabel: \'Simpan\',
         submitButtonLoadingLabel: \'Menyimpan..\',
-        messageSuccess: \'Surat telah dibuat\',
-        resetForm: [\'nama\'],
-        focus: \'nama\',
-        consoleResult: true
+        messageSuccess: \'Data telah dibuat\',
+        resetForm: [\'email\'],
+        focus: \'email\'
     }
 });
 </script>

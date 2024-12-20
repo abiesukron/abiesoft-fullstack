@@ -22,7 +22,11 @@ function validasi(x) {
                     el("#"+id).parentElement.children[2].children[1].focus();
                     el("#"+id).parentElement.classList.add('form-error');
                 }else{
-                    el("#"+id).focus();
+                    if(el("#virtual-"+id)){
+                        el("#virtual-"+id).focus();
+                    }else{
+                        el("#"+id).focus();
+                    }
                     el("#"+id).parentElement.classList.add('form-error');
                 }
                 return false;

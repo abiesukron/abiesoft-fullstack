@@ -14,7 +14,9 @@ class test extends Schema
         $schema->teks('web');
         $schema->teks('password');
         $schema->tanggal('tanggal');
-        $schema->teks('jeniskelamin');
+        $schema->angka('jumlah');
+        $schema->enum(nama:'jeniskelamin',data:['Laki-laki','Perempuan']);
+        $schema->paragrap('alamat');
         $sql = $schema->create('test');
         DB::terhubung()->query($sql);
         $this->buatdata();
