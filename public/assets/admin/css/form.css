@@ -31,6 +31,22 @@
     border: 1px solid var(--primary-hover);
 }
 
+.form-grup .form-control.editor {
+    gap: 0;
+}
+
+.form-grup .form-control.editor button{
+    position: relative;
+    padding: 6px 15px;
+    margin: 1px 0;
+    color: var(--putih);
+}
+
+.form-grup .form-control.editor button svg{
+    position: relative;
+    fill: rebeccapurple;
+}
+
 .form-single-button > button {
     width: 100%;
 }
@@ -80,12 +96,54 @@ button:hover {
     cursor: pointer;
 }
 
+.form-grup .input-opsi {
+    width: 100%;
+    display: block;
+    background-color: rebeccapurple;
+    position: relative;
+}
+
+.form-grup .input-opsi > div:nth-child(1) {
+    position: absolute;
+    padding: 10px;
+    top: -35px;
+    left: 20px;
+    cursor: pointer;
+}
+
+.form-grup .input-opsi > div:nth-child(1) > svg,
+.form-grup .input-opsi > div:nth-child(2) > svg{
+    position: relative;
+    cursor: pointer;
+}
+
+.form-grup .input-opsi > div:nth-child(2) {
+    position: absolute;
+    top: -25px;
+    right: 0;
+    cursor: pointer;
+}
+
+input[type="number"]::-webkit-outer-spin-button, 
+input[type="number"]::-webkit-inner-spin-button { 
+    -webkit-appearance: none; margin: 0; 
+} 
+
+input[type="number"] { 
+    -moz-appearance: textfield; 
+}
+
 input::placeholder {
     color: var(--abu2);
 }
 
 input[data-padding='right-icon'].form-control {
     padding-right: 50px;
+}
+
+input[data-padding='justify-icon'].form-control {
+    padding-right: 50px;
+    padding-left: 50px;
 }
 
 

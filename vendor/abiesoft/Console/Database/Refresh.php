@@ -48,7 +48,9 @@ class Refresh {
                         DB::terhubung()->hapus('migrasi', array(
                             'tabel', '=', $ct->TABLE_NAME
                         ));
-                        echo "-- Tabel \e[31m\e[9m" . $ct->TABLE_NAME . "\e[0m\e[39m sudah dihapus. \n";
+                        if($ct->TABLE_NAME != 'token'){
+                            echo "-- Tabel \e[31m\e[9m" . $ct->TABLE_NAME . "\e[0m\e[39m sudah dihapus. \n";   
+                        }
                     }
                 }
             }
@@ -80,6 +82,7 @@ class Refresh {
                                 echo "-- Tabel \e[32m" . explode('.', $file)[0] . "\e[39m sudah diimport. \n";
                             }
                         }
+                        include_once __DIR__ . "/../Schema/token.php";
                     } else {
                         if ($total === 0) {
                             $statusimport = "\n\e[0;102m Tidak Ada Tabel Yang Diimport! \e[0m\n\e[0;36m\e[0m \n\n";

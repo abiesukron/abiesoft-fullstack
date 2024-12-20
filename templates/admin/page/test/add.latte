@@ -21,6 +21,10 @@
                 <input data-tipe='tanggal' class='form-control' id='tanggal' name='tanggal' placeholder='Tanggal'>
             </div>
             <div class='form-grup'>
+                <label for='jumlah'>Jumlah</label>
+                <input data-tipe='angka' class='form-control' id='jumlah' name='jumlah' placeholder='Jumlah'>
+            </div>
+            <div class='form-grup'>
                 <label for='jeniskelamin'>Jenis Kelamin</label>
                 <select data-tipe='select' class='form-control' id='jeniskelamin' name='jeniskelamin'>
                     <option value=''>Pilih Jenis Kelamin</option>
@@ -28,10 +32,42 @@
                     <option value='perempuan'>Perempuan</option>
                 </select>
             </div>
+            <div class='form-grup'>
+                <label for='alamat'>Alamat</label>
+                <textarea data-tipe='editor-only' class='form-control' id='alamat' name='alamat' placeholder='Alamat'></textarea>
+            </div>
             <div class='form-single-button'>
-                <button>Sign up</button>
+                <button><span id='btnSubmit'>Sign up</span></button>
             </div>
         </form>
     </div>
 </div>
+{/block}
+
+{block js}
+<script>
+let formInput = el('#formInput');
+if(formInput){
+    formInput.addEventListener('submit',(e)=>{
+        e.preventDefault();
+        let btnSubmit = document.getElementById('btnSubmit');
+        btnSubmit.innerHTML = "Mengirim..";
+        const form = document.querySelector('form[id="formInput"]');
+        const formData = new FormData(form);
+        fetch(Baseurl + 'api/test', {
+            method: 'POST',
+            body: formData,
+            headers: HEADERFORM
+        }).then(response => response.json()).then(res => {
+            btnSubmit.innerHTML = "Submit";
+            console.log(res);
+            return false;
+        }).catch(error => {
+            btnSubmit.innerHTML = "Submit";
+            console.log(error);
+            return false;
+        });
+    });
+}
+</script>
 {/block}

@@ -1,4 +1,276 @@
 /*
+    Textarea 
+*/
+
+/*
+  Textarea
+*/
+
+let observe;
+if (window.attachEvent) {
+    observe = function (element, event, handler) {
+        element.attachEvent('on'+event, handler);
+    };
+}else {
+    observe = function (element, event, handler) {
+        element.addEventListener(event, handler, false);
+    };
+}
+
+function autoheight (x) {
+    let text = document.getElementById(x);
+    function resize () {
+        text.style.height = 'auto';
+        text.style.height = text.scrollHeight+'px';
+    }
+    /* 0-timeout to get the already changed text */
+    function delayedResize () {
+        window.setTimeout(resize, 0);
+    }
+    observe(text, 'change',  resize);
+    observe(text, 'cut',     delayedResize);
+    observe(text, 'paste',   delayedResize);
+    observe(text, 'drop',    delayedResize);
+    observe(text, 'keydown', delayedResize);
+    resize();
+}
+
+let textarea = document.querySelectorAll('textarea');
+if(textarea){
+    for (let i=0; i < textarea.length; i++) {
+
+        // if(textarea[i].dataset.tipe == "editor"){
+            
+        //     // Editor Text
+        //     textarea[i].parentElement.children[1].setAttribute("style","display: none;");
+        //     let div = document.createElement("div");
+        //     div.setAttribute("class","form-control editor");
+        //     div.innerHTML = `
+        //         <button type="button" class="btn-editor button-opsi`+i+`" data-command="bold" title="Teks Bold">
+        //             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+        //                 <path fill-rule="evenodd" d="M5.246 3.744a.75.75 0 0 1 .75-.75h7.125a4.875 4.875 0 0 1 3.346 8.422 5.25 5.25 0 0 1-2.97 9.58h-7.5a.75.75 0 0 1-.75-.75V3.744Zm7.125 6.75a2.625 2.625 0 0 0 0-5.25H8.246v5.25h4.125Zm-4.125 2.251v6h4.5a3 3 0 0 0 0-6h-4.5Z" clip-rule="evenodd" />
+        //             </svg>
+        //         </button>
+        //         <button type="button" class="btn-editor button-opsi`+i+`" data-command="italic" title="Teks Italic">/</button>
+        //         <button type="button" class="btn-editor button-opsi`+i+`" data-command="underline" title="Teks Underline">U</button>
+        //         <button type="button" class="btn-editor button-opsi`+i+`" data-command="insertOrderedList" title="List Order">Ol</button>
+        //         <button type="button" class="btn-editor button-opsi`+i+`" data-command="insertUnorderedList" title="Unlist Order">Ul</button>
+        //         <button type="button" class="btn-editor button-opsi`+i+`" data-command="justifyLeft" title="Teks Rata Kiri">L</button>
+        //         <button type="button" class="btn-editor button-opsi`+i+`" data-command="justifyCenter" title="Teks Center">C</button>
+        //         <button type="button" class="btn-editor btn-editor button-opsi`+i+`" data-command="justifyRight" title="Teks Rata Kanan">R</button>
+        //         <button type="button" class="btn-editor button-opsi`+i+`" data-command="justifyFull" title="Teks Rata Kanan Kiri">J</button>
+        //         <button type="button" class="btn-editor btn-editor button-opsi`+i+`" data-command="createLink" title="Buat Link">Link</button>
+        //         <button type="button" class="btn-editor button-opsi`+i+`" data-command="embedYoutube" title="Tambahkan Youtube">Youtube</button>
+        //         <button type="button" class="btn-editor button-opsi`+i+`" data-command="embedPhoto" title="Tambahkan Photo">Photo</button>
+        //         <div id="editor`+i+`" contenteditable="true" style="width: 100%; min-height: 80px; margin-top: 15px;"></div>
+        //     `;
+        //     textarea[i].parentElement.append(div);
+        //     let edt = el("#editor"+i);
+
+        //     let btnOpsi = document.querySelectorAll(".button-opsi"+i); 
+        //     for(let a=0; a<btnOpsi.length; a++){
+        //         btnOpsi[a].addEventListener("click",()=>{
+        //             let cmd = btnOpsi[a].dataset.command;
+        //             if(cmd == "createLink"){
+        //                 let url = prompt("Masukan link :", "http://");
+        //                 document.execCommand(cmd, false, url);
+        //                 textarea[i].value =  edt.innerHTML;
+        //             }else if(cmd == "insertOrderedList"){
+        //                 const selection = window.getSelection().toString();
+        //                 const olTag = `<ul style='list-style-type:decimal'><li>${selection}</li></ul>`;
+        //                 document.execCommand("insertHTML", false, olTag);
+        //                 textarea[i].value =  edt.innerHTML;
+        //             }else if(cmd == "insertUnorderedList"){
+        //                 const selection = window.getSelection().toString();
+        //                 const ulTag = `<ul style='list-style-type:circle'><li>${selection}</li></ul>`;
+        //                 document.execCommand("insertHTML", false, ulTag);
+        //                 textarea[i].value =  edt.innerHTML;
+        //             }else if(cmd == "embedYoutube"){
+        //                 let url = prompt("Masukan link youtube:", "http://");
+        //                 let embed = "";
+        //                 if(url != "") {
+        //                     url = url.split("v=")[1].split("&")[0];
+        //                     embed =`<iframe width="560" height="315" src="https://www.youtube.com/embed/${url}" title="YouTube video player" frameborder="0" allowfullscreen></iframe>`;
+        //                 }
+        //                 document.execCommand("insertHTML", false, embed);
+        //                 textarea[i].value =  edt.innerHTML;
+        //             }else if(cmd == "embedPhoto"){
+        //                 let url = prompt("Masukan url photo:", "http://");
+        //                 let embed = "";
+        //                 if(url != "") {
+        //                     embed =`<img src="${url}" width: 100%;>`;
+        //                 }
+        //                 document.execCommand("insertHTML", false, embed);
+        //                 textarea[i].value =  edt.innerHTML;
+        //             }else{
+        //                 document.execCommand(cmd, false, null);
+        //                 textarea[i].value =  edt.innerHTML;
+        //             }
+        //         });
+        //     }
+
+        //     edt.addEventListener("keyup", ()=>{
+        //         textarea[i].value =  edt.innerHTML;
+        //     });
+
+        //     if(textarea[i].value.split("").length > 0){
+        //         edt.innerHTML = htmlentities.decode(textarea[i].value);
+        //     }
+
+        // }else if(textarea[i].dataset.tipe == "editor-with-inner"){
+            
+        //     // Editor Text
+        //     textarea[i].parentElement.children[1].setAttribute("style","display: none;");
+        //     let div = document.createElement("div");
+        //     div.setAttribute("class","form-control editor");
+        //     div.innerHTML = `
+        //         <button type="button" class="button-opsi`+i+`" data-command="bold" title="Teks Bold">B</button>
+        //         <button type="button" class="button-opsi`+i+`" data-command="italic" title="Teks Italic">/</button>
+        //         <button type="button" class="button-opsi`+i+`" data-command="underline" title="Teks Underline">U</button>
+        //         <button type="button" class="button-opsi`+i+`" data-command="insertOrderedList" title="List Order"><i class="las la-list-ol"></i></button>
+        //         <button type="button" class="button-opsi`+i+`" data-command="insertUnorderedList" title="Unlist Order"><i class="las la-list-ul"></i></button>
+        //         <button type="button" class="button-opsi`+i+`" data-command="justifyLeft" title="Teks Rata Kiri"><i class="las la-align-left"></i></button>
+        //         <button type="button" class="button-opsi`+i+`" data-command="justifyCenter" title="Teks Center"><i class="las la-align-center"></i></button>
+        //         <button type="button" class="button-opsi`+i+`" data-command="justifyRight" title="Teks Rata Kanan"><i class="las la-align-right"></i></button>
+        //         <button type="button" class="button-opsi`+i+`" data-command="justifyFull" title="Teks Rata Kanan Kiri"><i class="las la-align-justify"></i></button>
+        //         <button type="button" class="button-opsi`+i+`" data-command="createLink" title="Buat Link"><i class="las la-link"></i></button>
+        //         <button type="button" class="button-opsi`+i+`" data-command="embedYoutube" title="Tambahkan Youtube"><i class="lab la-youtube"></i></button>
+        //         <button type="button" class="button-opsi`+i+`" data-command="embedPhoto" title="Tambahkan Photo"><i class="las la-image"></i></button>
+        //         <div id="editor`+i+`" contenteditable="true" style="width: 100%; min-height: 80px; margin-top: 15px;"></div>
+        //     `;
+        //     textarea[i].parentElement.append(div);
+        //     let edt = el("#editor"+i);
+
+        //     let btnOpsi = document.querySelectorAll(".button-opsi"+i); 
+        //     for(let a=0; a<btnOpsi.length; a++){
+        //         btnOpsi[a].addEventListener("click",()=>{
+        //             let cmd = btnOpsi[a].dataset.command;
+        //             if(cmd == "createLink"){
+        //                 let url = prompt("Masukan link :", "http://");
+        //                 document.execCommand(cmd, false, url);
+        //                 textarea[i].value =  edt.innerHTML;
+        //             }else if(cmd == "insertOrderedList"){
+        //                 const selection = window.getSelection().toString();
+        //                 const olTag = `<ul style='list-style-type:decimal'><li>${selection}</li></ul>`;
+        //                 document.execCommand("insertHTML", false, olTag);
+        //                 textarea[i].value =  edt.innerHTML;
+        //             }else if(cmd == "insertUnorderedList"){
+        //                 const selection = window.getSelection().toString();
+        //                 const ulTag = `<ul style='list-style-type:circle'><li>${selection}</li></ul>`;
+        //                 document.execCommand("insertHTML", false, ulTag);
+        //                 textarea[i].value =  edt.innerHTML;
+        //             }else if(cmd == "embedYoutube"){
+        //                 let url = prompt("Masukan link youtube:", "http://");
+        //                 let embed = "";
+        //                 if(url != "") {
+        //                     url = url.split("v=")[1].split("&")[0];
+        //                     embed =`<iframe width="560" height="315" src="https://www.youtube.com/embed/${url}" title="YouTube video player" frameborder="0" allowfullscreen></iframe>`;
+        //                 }
+        //                 document.execCommand("insertHTML", false, embed);
+        //                 textarea[i].value =  edt.innerHTML;
+        //             }else if(cmd == "embedPhoto"){
+        //                 let url = prompt("Masukan url photo:", "http://");
+        //                 let embed = "";
+        //                 if(url != "") {
+        //                     embed =`<img src="${url}" width: 100%;>`;
+        //                 }
+        //                 document.execCommand("insertHTML", false, embed);
+        //                 textarea[i].value =  edt.innerHTML;
+        //             }else{
+        //                 document.execCommand(cmd, false, null);
+        //                 textarea[i].value =  edt.innerHTML;
+        //             }
+        //         });
+        //     }
+
+        //     edt.addEventListener("keyup", ()=>{
+        //         textarea[i].value =  edt.innerHTML;
+        //         if(edt.innerHTML != "<br>"){
+        //             el("#"+textarea[i].dataset.inner).innerHTML = edt.innerHTML;
+        //         }else{
+        //             el("#"+textarea[i].dataset.inner).innerHTML = defaultData[textarea[i].parentElement.children[1].dataset.inner];
+        //         }
+        //     });
+
+        //     if(textarea[i].value.split("").length > 0){
+        //         edt.innerHTML = htmlentities.decode(textarea[i].value);
+        //     }
+
+        // } else 
+        
+        
+        
+        if(textarea[i].dataset.tipe == "editor-only"){
+            
+            // Editor Text
+            textarea[i].parentElement.children[1].setAttribute("style","display: none;");
+            let div = document.createElement("div");
+            div.setAttribute("class","form-control editor");
+            div.innerHTML = `
+                <div id="editor`+i+`" contenteditable="true" style="width: 100%; min-height: 40px;"></div>
+            `;
+            textarea[i].parentElement.append(div);
+            let edt = el("#editor"+i);
+
+            edt.addEventListener("keyup", ()=>{
+                textarea[i].value =  edt.innerHTML;
+            });
+
+            if(textarea[i].value.split("").length > 0){
+                edt.innerHTML = htmlentities.decode(textarea[i].value);
+            }
+
+        // } else if(textarea[i].dataset.tipe == "editor-only-with-inner"){
+            
+        //     // Editor Text
+        //     textarea[i].parentElement.children[1].setAttribute("style","display: none;");
+        //     let div = document.createElement("div");
+        //     div.setAttribute("class","form-control editor");
+        //     div.innerHTML = `
+        //         <div id="editor`+i+`" contenteditable="true" style="width: 100%; min-height: 40px;"></div>
+        //     `;
+        //     textarea[i].parentElement.append(div);
+        //     let edt = el("#editor"+i);
+
+        //     edt.addEventListener("keyup", ()=>{
+        //         textarea[i].value =  edt.innerHTML;
+        //         if(edt.innerHTML != "<br>"){
+        //             el("#"+textarea[i].dataset.inner).innerHTML = edt.innerHTML;
+        //         }else{
+        //             el("#"+textarea[i].dataset.inner).innerHTML = defaultData[textarea[i].parentElement.children[1].dataset.inner];
+        //         }
+        //     });
+
+        //     if(textarea[i].value.split("").length > 0){
+        //         edt.innerHTML = htmlentities.decode(textarea[i].value);
+        //     }
+
+
+
+        }else{
+            textarea[i].setAttribute("rows", "3");
+            autoheight(textarea[i].id);
+        }
+
+    }
+
+    function resetTextarea() {
+        for (let i=0; i < textarea.length; i++) {
+
+            if(textarea[i].dataset.tipe == "editor"){
+                textarea[i].parentElement.children[2].children[textarea[i].parentElement.children[2].children.length-1].innerHTML = "";
+            }else if(textarea[i].dataset.tipe == "editor-only"){
+                textarea[i].parentElement.children[2].children[textarea[i].parentElement.children[2].children.length-1].innerHTML = "";
+            }else{
+                textarea[i].value = "";
+            }
+        }
+    }
+
+}
+
+
+/*
     Select Input
 */
 const tipeelement = document.querySelectorAll('[data-tipe]');
@@ -61,9 +333,56 @@ if(tipeelement){
 
             }
 
+            /*
+                Jika data-tipe='angka'
+            */
+
+            if(tipeelement[i].dataset.tipe == 'angka'){
+
+                tipeelement[i].setAttribute('type','hidden');
+                elementopsi.innerHTML = `
+                    <div>
+                        <div class='input-opsi'>
+                            <div id='min-`+tipeelement[i].id+`'>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                    <path fill-rule="evenodd" d="M4.25 12a.75.75 0 0 1 .75-.75h14a.75.75 0 0 1 0 1.5H5a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div id='plus-`+tipeelement[i].id+`'>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                    <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </div>
+                        <input style='text-align: center;' type='number' data-padding='justify-icon' class='form-control' id='virtual-`+tipeelement[i].id+`' placeholder='`+tipeelement[i].placeholder+`' value=''>
+                    </div>
+                `;
+
+                let min = el('#min-'+tipeelement[i].id);
+                let plus = el('#plus-'+tipeelement[i].id);
+                let virtual = el('#virtual-'+tipeelement[i].id);
+                min.addEventListener('click', ()=>{
+                    if(virtual.value > 0){
+                        virtual.value = Number(virtual.value) - Number(1);
+                        tipeelement[i].value = Number(virtual.value);
+                    }
+                });
+
+                plus.addEventListener('click', ()=>{
+                    virtual.value = Number(virtual.value) + Number(1);
+                    tipeelement[i].value = Number(virtual.value);
+                });
+
+                
+
+            }
+
+
+
+
 
             /*
-                Jikda data-tipe='email'
+                Jika data-tipe='email'
             */
             if(tipeelement[i].dataset.tipe == 'email'){
 
@@ -204,7 +523,7 @@ if(tipeelement){
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
                             </svg>
                         </div>
-                        <div type='email' data-klik='`+tipeelement[i].id+`' data-padding='right-icon' class='form-control action' id='virtual-`+tipeelement[i].id+`'>`+placeholder+`</div>
+                        <div type='email' data-klik='`+tipeelement[i].id+`' data-padding='right-icon' class='form-control action' id='virtual-`+tipeelement[i].id+`'>-</div>
                     </div>
                     <div id='calender-`+tipeelement[i].id+`'>
                         
@@ -213,6 +532,7 @@ if(tipeelement){
 
                 let calender = el('#calender-'+tipeelement[i].id);
                 let virtual = el('#virtual-'+tipeelement[i].id);
+
                 virtual.addEventListener('click', ()=>{
 
                     if(tipeelement[i].value != ""){
@@ -256,19 +576,19 @@ if(tipeelement){
                         <div class='calender'>
                             <div>
                                 <div>
-                                    <select data-klik='`+tipeelement[i].id+`' onChange='setTgl([this.value,this.dataset.id])' data-id='`+tipeelement[i].id+`' data-tipe='select' class='form-control' style='width: 100%; font-size: 11pt; padding: 8px; border-radius: 0; text-align: center; background: none;' id='tgl'>
+                                    <select id='select-tanggal-`+tipeelement[i].id+`' data-klik='`+tipeelement[i].id+`' onChange='setTgl([this.value,this.dataset.id])' data-id='`+tipeelement[i].id+`' data-tipe='select' class='form-control' style='width: 100%; font-size: 11pt; padding: 8px; border-radius: 0; text-align: center; background: none;' id='tgl'>
                                         <option data-klik='`+tipeelement[i].id+`' value='`+placeholder.split("/")[2]+`'>`+placeholder.split("/")[2]+`</option>
                                         `+tg+`
                                     </select>
                                 </div>
                                 <div>
-                                    <select id='select-bulan-'`+tipeelement[i].id+`' data-klik='`+tipeelement[i].id+`' onChange='setBln([this.value,this.dataset.id])' data-id='`+tipeelement[i].id+`' data-tipe='select' class='form-control' style='width: 100%; font-size: 11pt; padding: 8px; border-radius: 0; text-align: center; background: none; border-top: 1px solid var(--abu); border-bottom: 1px solid var(--abu);' id='bln'>
+                                    <select id='select-bulan-`+tipeelement[i].id+`' data-klik='`+tipeelement[i].id+`' onChange='setBln([this.value,this.dataset.id])' data-id='`+tipeelement[i].id+`' data-tipe='select' class='form-control' style='width: 100%; font-size: 11pt; padding: 8px; border-radius: 0; text-align: center; background: none; border-top: 1px solid var(--abu); border-bottom: 1px solid var(--abu);' id='bln'>
                                         <option data-klik='`+tipeelement[i].id+`' value='`+placeholder.split("/")[1]+`'>`+bulanTxt(placeholder.split("/")[1])+`</option>
                                         `+bl+`
                                     </select>
                                 </div>
                                 <div>
-                                    <select data-klik='`+tipeelement[i].id+`' onChange='setThn([this.value,this.dataset.id])' data-id='`+tipeelement[i].id+`' onChange='' data-tipe='select' class='form-control' style='width: 100%; font-size: 11pt; padding: 8px; border-radius: 0; text-align: center; background: none;' id='thn'>
+                                    <select id='select-tahun-`+tipeelement[i].id+`' data-klik='`+tipeelement[i].id+`' onChange='setThn([this.value,this.dataset.id])' data-id='`+tipeelement[i].id+`' onChange='' data-tipe='select' class='form-control' style='width: 100%; font-size: 11pt; padding: 8px; border-radius: 0; text-align: center; background: none;' id='thn'>
                                         <option data-klik='`+tipeelement[i].id+`' value='`+placeholder.split("/")[0]+`'>`+placeholder.split("/")[0]+`</option>
                                         `+th+`
                                     </select>
@@ -287,6 +607,294 @@ if(tipeelement){
                     setTgl([placeholder.split("/")[2],tipeelement[i].id]);
 
                 });
+
+
+                let tglfull = [];
+                                
+                function setTgl(x) {
+                    tglfull['tgl'] = x[0];
+                    let namabulan = bulanTxt(tglfull['bln']);
+                    let tglangka = tglfull['tgl']; 
+                    el("#setTglView-"+x[1]).innerHTML = tglangka;
+                    if(tglangka == 31){
+                        if(tglfull['bln'] != '01' && tglfull['bln'] != '03' && tglfull['bln'] != '05' && tglfull['bln'] != '07' && tglfull['bln'] != '08' && tglfull['bln'] != '10' && tglfull['bln'] != '12'){
+                            el('#select-bulan-'+x[1]).innerHTML = `
+                                <option data-klik='`+x[1]+`' value=''>Pilih Bulan</option>
+                                <option data-klik='`+x[1]+`' value='01'>Januari</option>
+                                <option data-klik='`+x[1]+`' value='03'>Maret</option>
+                                <option data-klik='`+x[1]+`' value='05'>Mei</option>
+                                <option data-klik='`+x[1]+`' value='07'>Juli</option>
+                                <option data-klik='`+x[1]+`' value='08'>Agustus</option>
+                                <option data-klik='`+x[1]+`' value='10'>Oktober</option>
+                                <option data-klik='`+x[1]+`' value='12'>Desember</option>
+                            `;
+                            el("#setBlnView-"+x[1]).innerHTML = "-";
+                            el("#virtual-"+x[1]).innerHTML = tipeelement[i].placeholder;
+                            el("#"+x[1]).value = "";
+                        }else{
+                            el('#select-bulan-'+x[1]).innerHTML = `
+                                <option data-klik='`+x[1]+`' value='`+tglangka+`'>`+namabulan+`</option>
+                                <option data-klik='`+x[1]+`' value='01'>Januari</option>
+                                <option data-klik='`+x[1]+`' value='03'>Maret</option>
+                                <option data-klik='`+x[1]+`' value='05'>Mei</option>
+                                <option data-klik='`+x[1]+`' value='07'>Juli</option>
+                                <option data-klik='`+x[1]+`' value='08'>Agustus</option>
+                                <option data-klik='`+x[1]+`' value='10'>Oktober</option>
+                                <option data-klik='`+x[1]+`' value='12'>Desember</option>
+                            `;
+                            resulttgl(x[1]);
+                        }
+                    }else {
+
+                        if(tglangka == 30){
+                            if(tglfull['bln'] != '02') {
+                                el('#select-bulan-'+x[1]).innerHTML = `
+                                    <option data-klik='`+x[1]+`' value='`+tglangka+`'>`+namabulan+`</option>
+                                    <option data-klik='`+x[1]+`' value='01'>Januari</option>
+                                    <option data-klik='`+x[1]+`' value='03'>Maret</option>
+                                    <option data-klik='`+x[1]+`' value='04'>April</option>
+                                    <option data-klik='`+x[1]+`' value='05'>Mei</option>
+                                    <option data-klik='`+x[1]+`' value='06'>Juni</option>
+                                    <option data-klik='`+x[1]+`' value='07'>Juli</option>
+                                    <option data-klik='`+x[1]+`' value='08'>Agustus</option>
+                                    <option data-klik='`+x[1]+`' value='09'>September</option>
+                                    <option data-klik='`+x[1]+`' value='10'>Oktober</option>
+                                    <option data-klik='`+x[1]+`' value='11'>November</option>
+                                    <option data-klik='`+x[1]+`' value='12'>Desember</option>
+                                `;
+                                resulttgl(x[1]);
+                            }else{
+                                el('#select-bulan-'+x[1]).innerHTML = `
+                                    <option data-klik='`+x[1]+`' value=''>Pilih Bulan</option>
+                                    <option data-klik='`+x[1]+`' value='01'>Januari</option>
+                                    <option data-klik='`+x[1]+`' value='03'>Maret</option>
+                                    <option data-klik='`+x[1]+`' value='04'>April</option>
+                                    <option data-klik='`+x[1]+`' value='05'>Mei</option>
+                                    <option data-klik='`+x[1]+`' value='06'>Juni</option>
+                                    <option data-klik='`+x[1]+`' value='07'>Juli</option>
+                                    <option data-klik='`+x[1]+`' value='08'>Agustus</option>
+                                    <option data-klik='`+x[1]+`' value='09'>September</option>
+                                    <option data-klik='`+x[1]+`' value='10'>Oktober</option>
+                                    <option data-klik='`+x[1]+`' value='11'>November</option>
+                                    <option data-klik='`+x[1]+`' value='12'>Desember</option>
+                                `;
+                                el("#setBlnView-"+x[1]).innerHTML = "-";
+                                el("#virtual-"+x[1]).innerHTML = tipeelement[i].placeholder;
+                                el("#"+x[1]).value = "";
+                            }
+                        }else{
+
+                            if(tglangka == 29){
+                                let kabisat = tglfull['thn'] % 4;
+                                if(kabisat == 0){
+                                    el('#select-bulan-'+x[1]).innerHTML = `
+                                        <option data-klik='`+x[1]+`' value='`+tglangka+`'>`+namabulan+`</option>
+                                        <option data-klik='`+x[1]+`' value='01'>Januari</option>
+                                        <option data-klik='`+x[1]+`' value='02'>Februari</option>
+                                        <option data-klik='`+x[1]+`' value='03'>Maret</option>
+                                        <option data-klik='`+x[1]+`' value='04'>April</option>
+                                        <option data-klik='`+x[1]+`' value='05'>Mei</option>
+                                        <option data-klik='`+x[1]+`' value='06'>Juni</option>
+                                        <option data-klik='`+x[1]+`' value='07'>Juli</option>
+                                        <option data-klik='`+x[1]+`' value='08'>Agustus</option>
+                                        <option data-klik='`+x[1]+`' value='09'>September</option>
+                                        <option data-klik='`+x[1]+`' value='10'>Oktober</option>
+                                        <option data-klik='`+x[1]+`' value='11'>November</option>
+                                        <option data-klik='`+x[1]+`' value='12'>Desember</option>
+                                    `;
+                                    resulttgl(x[1]);
+                                }else{
+                                    el('#select-bulan-'+x[1]).innerHTML = `
+                                        <option data-klik='`+x[1]+`' value=''>Pilih Bulan</option>
+                                        <option data-klik='`+x[1]+`' value='01'>Januari</option>
+                                        <option data-klik='`+x[1]+`' value='03'>Maret</option>
+                                        <option data-klik='`+x[1]+`' value='04'>April</option>
+                                        <option data-klik='`+x[1]+`' value='05'>Mei</option>
+                                        <option data-klik='`+x[1]+`' value='06'>Juni</option>
+                                        <option data-klik='`+x[1]+`' value='07'>Juli</option>
+                                        <option data-klik='`+x[1]+`' value='08'>Agustus</option>
+                                        <option data-klik='`+x[1]+`' value='09'>September</option>
+                                        <option data-klik='`+x[1]+`' value='10'>Oktober</option>
+                                        <option data-klik='`+x[1]+`' value='11'>November</option>
+                                        <option data-klik='`+x[1]+`' value='12'>Desember</option>
+                                    `;
+                                    el("#setBlnView-"+x[1]).innerHTML = "-";
+                                    el("#virtual-"+x[1]).innerHTML = tipeelement[i].placeholder;
+                                    el("#"+x[1]).value = "";
+                                }
+                                
+                                if(tglfull['tgl'] == '29' && tglfull['bln'] == '02'){
+                                    if(tglfull['thn'] % 4 != 0){
+                                        el("#setThnView-"+x[1]).innerHTML = "-";
+                                        let thini = new Date().getFullYear();
+                                        let th = "";
+                                        for(let thnitem=1970; thnitem<=thini; thnitem++){
+                                            if(thnitem % 4 == 0){
+                                                th += `<option data-klik='`+tipeelement[i].id+`' value='`+thnitem+`'>`+thnitem+`</option>`;
+                                            }
+                                        }
+                                        el('#select-tahun-'+x[1]).innerHTML = `
+                                            <option data-klik='`+tipeelement[i].id+`' value=''>Pilih Tahun</option>
+                                            `+th+`
+                                        `;
+                                    }else{
+                                        let thini = new Date().getFullYear();
+                                        let th = "";
+                                        for(let thnitem=1970; thnitem<=thini; thnitem++){
+                                            if(thnitem % 4 == 0){
+                                                th += `<option data-klik='`+tipeelement[i].id+`' value='`+thnitem+`'>`+thnitem+`</option>`;
+                                            }
+                                        }
+                                        el('#select-tahun-'+x[1]).innerHTML = `
+                                            <option data-klik='`+tipeelement[i].id+`' value='`+tglfull["thn"]+`'>`+tglfull["thn"]+`</option>
+                                            `+th+`
+                                        `;
+                                    }
+                                }else{
+                                    let thini = new Date().getFullYear();
+                                    let th = "";
+                                    for(let thnitem=1970; thnitem<=thini; thnitem++){
+                                        th += `<option data-klik='`+tipeelement[i].id+`' value='`+thnitem+`'>`+thnitem+`</option>`;
+                                    }
+                                    el('#select-tahun-'+x[1]).innerHTML = `
+                                        <option data-klik='`+tipeelement[i].id+`' value='`+tglfull["thn"]+`'>`+tglfull["thn"]+`</option>
+                                        `+th+`
+                                    `;
+                                }
+                            }else{
+                                el('#select-bulan-'+x[1]).innerHTML = `
+                                    <option data-klik='`+x[1]+`' value='`+tglangka+`'>`+namabulan+`</option>
+                                    <option data-klik='`+x[1]+`' value='01'>Januari</option>
+                                    <option data-klik='`+x[1]+`' value='02'>Februari</option>
+                                    <option data-klik='`+x[1]+`' value='03'>Maret</option>
+                                    <option data-klik='`+x[1]+`' value='04'>April</option>
+                                    <option data-klik='`+x[1]+`' value='05'>Mei</option>
+                                    <option data-klik='`+x[1]+`' value='06'>Juni</option>
+                                    <option data-klik='`+x[1]+`' value='07'>Juli</option>
+                                    <option data-klik='`+x[1]+`' value='08'>Agustus</option>
+                                    <option data-klik='`+x[1]+`' value='09'>September</option>
+                                    <option data-klik='`+x[1]+`' value='10'>Oktober</option>
+                                    <option data-klik='`+x[1]+`' value='11'>November</option>
+                                    <option data-klik='`+x[1]+`' value='12'>Desember</option>
+                                `;
+                                let thini = new Date().getFullYear();
+                                let th = "";
+                                for(let thnitem=1970; thnitem<=thini; thnitem++){
+                                    th += `<option data-klik='`+tipeelement[i].id+`' value='`+thnitem+`'>`+thnitem+`</option>`;
+                                }
+                                el('#select-tahun-'+x[1]).innerHTML = `
+                                    <option data-klik='`+tipeelement[i].id+`' value='`+tglfull["thn"]+`'>`+tglfull["thn"]+`</option>
+                                    `+th+`
+                                `;
+                                resulttgl(x[1]);
+                            }
+
+                        }
+
+                    }
+                }
+
+                function setBln(x) {
+                    tglfull['bln'] = x[0];
+                    let namabulan = bulanTxt(x[0]);
+                    el("#setBlnView-"+x[1]).innerHTML = namabulan;
+                    if(tglfull['tgl'] == '29' && tglfull['bln'] == '02'){
+                        if(tglfull['thn'] % 4 != 0){
+                            let thini = new Date().getFullYear();
+                            let th = "";
+                            for(let thnitem=1970; thnitem<=thini; thnitem++){
+                                if(thnitem % 4 == 0){
+                                    th += `<option data-klik='`+tipeelement[i].id+`' value='`+thnitem+`'>`+thnitem+`</option>`;
+                                }
+                            }
+                            el('#select-tahun-'+x[1]).innerHTML = `
+                                <option data-klik='`+tipeelement[i].id+`' value=''>Pilih Tahun</option>
+                                `+th+`
+                            `;
+                            el("#setThnView-"+x[1]).innerHTML = "-";
+                            el("#virtual-"+x[1]).innerHTML = "-";
+                            el("#"+x[1]).value = "";
+                        }else{
+                            let thini = new Date().getFullYear();
+                            let th = "";
+                            for(let thnitem=1970; thnitem<=thini; thnitem++){
+                                if(thnitem % 4 == 0){
+                                    th += `<option data-klik='`+tipeelement[i].id+`' value='`+thnitem+`'>`+thnitem+`</option>`;
+                                }
+                            }
+                            el('#select-tahun-'+x[1]).innerHTML = `
+                                <option data-klik='`+tipeelement[i].id+`' value='`+tglfull["thn"]+`'>`+tglfull["thn"]+`</option>
+                                `+th+`
+                            `;
+                            el("#setThnView-"+x[1]).innerHTML = "-";
+                            el("#virtual-"+x[1]).innerHTML = "-";
+                            el("#"+x[1]).value = "";
+                        }
+                    }else{
+                        let thini = new Date().getFullYear();
+                        let th = "";
+                        for(let thnitem=1970; thnitem<=thini; thnitem++){
+                            th += `<option data-klik='`+tipeelement[i].id+`' value='`+thnitem+`'>`+thnitem+`</option>`;
+                        }
+                        el('#select-tahun-'+x[1]).innerHTML = `
+                            <option data-klik='`+tipeelement[i].id+`' value='`+tglfull["thn"]+`'>`+tglfull["thn"]+`</option>
+                            `+th+`
+                        `;
+                    }
+                    resulttgl(x[1]);
+                }
+
+                function bulanTxt(x) {
+                    let namabulan = "";
+                    if(x == "01"){
+                        namabulan = "Januari";
+                    }
+                    if(x == "02"){
+                        namabulan = "Februari";
+                    }
+                    if(x == "03"){
+                        namabulan = "Maret";
+                    }
+                    if(x == "04"){
+                        namabulan = "April";
+                    }
+                    if(x == "05"){
+                        namabulan = "Mei";
+                    }
+                    if(x == "06"){
+                        namabulan = "Juni";
+                    }
+                    if(x == "07"){
+                        namabulan = "Juli";
+                    }
+                    if(x == "08"){
+                        namabulan = "Agustus";
+                    }
+                    if(x == "09"){
+                        namabulan = "September";
+                    }
+                    if(x == "10"){
+                        namabulan = "Oktober";
+                    }
+                    if(x == "11"){
+                        namabulan = "November";
+                    }
+                    if(x == "12"){
+                        namabulan = "Desember";
+                    }
+                    return namabulan;
+                }
+
+                function setThn(x) {
+                    tglfull['thn'] = x[0];
+                    el("#setThnView-"+x[1]).innerHTML = tglfull['thn'];
+                    resulttgl(x[1]);
+                }
+
+                function resulttgl (x) {
+                    el("#virtual-"+x).innerHTML =  tglfull['tgl'] + " " + bulanTxt(tglfull['bln']) + " " + tglfull['thn'];
+                    el("#"+x).value = tglfull['thn'] + "/" + tglfull['bln'] + "/" + tglfull['tgl'];
+                }
 
             }
 
@@ -316,84 +924,4 @@ if(tipeelement){
     }
 
 
-
-    let tglfull = [];
-                    
-    function setTgl(x) {
-        tglfull['tgl'] = x[0];
-        el("#setTglView-"+x[1]).innerHTML = tglfull['tgl'];
-        if(tglfull['tgl'] == 31){
-            el('#select-bulan-'+x[1]).innerHTML = `
-                <option data-klik='`+x[1]+`' value=''>Pilih Bulan</option>
-                <option data-klik='`+x[1]+`' value='01'>Januari</option>
-                <option data-klik='`+x[1]+`' value='03'>Maret</option>
-                <option data-klik='`+x[1]+`' value='05'>Mei</option>
-                <option data-klik='`+x[1]+`' value='07'>Juli</option>
-                <option data-klik='`+x[1]+`' value='08'>Agustus</option>
-                <option data-klik='`+x[1]+`' value='10'>Oktober</option>
-                <option data-klik='`+x[1]+`' value='12'>Desember</option>
-            `;
-        }
-        resulttgl(x[1]);
-    }
-
-    function setBln(x) {
-        tglfull['bln'] = x[0];
-        let namabulan = bulanTxt(x[0]);
-        el("#setBlnView-"+x[1]).innerHTML = namabulan;
-        resulttgl(x[1]);
-    }
-
-    function bulanTxt(x) {
-        let namabulan = "";
-        if(x == "01"){
-            namabulan = "Januari";
-        }
-        if(x == "02"){
-            namabulan = "Februari";
-        }
-        if(x == "03"){
-            namabulan = "Maret";
-        }
-        if(x == "04"){
-            namabulan = "April";
-        }
-        if(x == "05"){
-            namabulan = "Mei";
-        }
-        if(x == "06"){
-            namabulan = "Juni";
-        }
-        if(x == "07"){
-            namabulan = "Juli";
-        }
-        if(x == "08"){
-            namabulan = "Agustus";
-        }
-        if(x == "09"){
-            namabulan = "September";
-        }
-        if(x == "10"){
-            namabulan = "Oktober";
-        }
-        if(x == "11"){
-            namabulan = "November";
-        }
-        if(x == "12"){
-            namabulan = "Desember";
-        }
-
-        return namabulan;
-    }
-
-    function setThn(x) {
-        tglfull['thn'] = x[0];
-        el("#setThnView-"+x[1]).innerHTML = tglfull['thn'];
-        resulttgl(x[1]);
-    }
-
-    function resulttgl (x) {
-        el("#virtual-"+x).innerHTML = tglfull['thn'] + "/" + tglfull['bln'] + "/" + tglfull['tgl'];
-        el("#"+x).value = tglfull['thn'] + "/" + tglfull['bln'] + "/" + tglfull['tgl'];
-    }
 }

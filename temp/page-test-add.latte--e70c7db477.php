@@ -8,7 +8,7 @@ final class Template_e70c7db477 extends Latte\Runtime\Template
 	public const Source = 'D:\\Sukron\\My Tools\\abiesoft-fullstack\\vendor\\abiesoft\\Http/../../../templates/admin/page/test/add.latte';
 
 	public const Blocks = [
-		['title' => 'blockTitle', 'content' => 'blockContent'],
+		['title' => 'blockTitle', 'content' => 'blockContent', 'js' => 'blockJs'],
 	];
 
 
@@ -20,6 +20,8 @@ final class Template_e70c7db477 extends Latte\Runtime\Template
 		$this->renderBlock('title', get_defined_vars()) /* line 2 */;
 		echo "\n";
 		$this->renderBlock('content', get_defined_vars()) /* line 3 */;
+		echo "\n";
+		$this->renderBlock('js', get_defined_vars()) /* line 47 */;
 	}
 
 
@@ -66,6 +68,10 @@ final class Template_e70c7db477 extends Latte\Runtime\Template
                 <input data-tipe=\'tanggal\' class=\'form-control\' id=\'tanggal\' name=\'tanggal\' placeholder=\'Tanggal\'>
             </div>
             <div class=\'form-grup\'>
+                <label for=\'jumlah\'>Jumlah</label>
+                <input data-tipe=\'angka\' class=\'form-control\' id=\'jumlah\' name=\'jumlah\' placeholder=\'Jumlah\'>
+            </div>
+            <div class=\'form-grup\'>
                 <label for=\'jeniskelamin\'>Jenis Kelamin</label>
                 <select data-tipe=\'select\' class=\'form-control\' id=\'jeniskelamin\' name=\'jeniskelamin\'>
                     <option value=\'\'>Pilih Jenis Kelamin</option>
@@ -73,12 +79,48 @@ final class Template_e70c7db477 extends Latte\Runtime\Template
                     <option value=\'perempuan\'>Perempuan</option>
                 </select>
             </div>
+            <div class=\'form-grup\'>
+                <label for=\'alamat\'>Alamat</label>
+                <textarea data-tipe=\'editor-only\' class=\'form-control\' id=\'alamat\' name=\'alamat\' placeholder=\'Alamat\'></textarea>
+            </div>
             <div class=\'form-single-button\'>
-                <button>Sign up</button>
+                <button><span id=\'btnSubmit\'>Sign up</span></button>
             </div>
         </form>
     </div>
 </div>
+';
+	}
+
+
+	/** {block js} on line 47 */
+	public function blockJs(array $ʟ_args): void
+	{
+		echo '<script>
+let formInput = el(\'#formInput\');
+if(formInput){
+    formInput.addEventListener(\'submit\',(e)=>{
+        e.preventDefault();
+        let btnSubmit = document.getElementById(\'btnSubmit\');
+        btnSubmit.innerHTML = "Mengirim..";
+        const form = document.querySelector(\'form[id="formInput"]\');
+        const formData = new FormData(form);
+        fetch(Baseurl + \'api/test\', {
+            method: \'POST\',
+            body: formData,
+            headers: HEADERFORM
+        }).then(response => response.json()).then(res => {
+            btnSubmit.innerHTML = "Submit";
+            console.log(res);
+            return false;
+        }).catch(error => {
+            btnSubmit.innerHTML = "Submit";
+            console.log(error);
+            return false;
+        });
+    });
+}
+</script>
 ';
 	}
 }
