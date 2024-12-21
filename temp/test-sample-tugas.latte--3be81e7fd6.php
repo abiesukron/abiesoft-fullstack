@@ -51,7 +51,7 @@ final class Template_3be81e7fd6 extends Latte\Runtime\Template
 		unset($ʟ_args);
 
 		echo '<div class=\'container\'>
-Disini dsa dasdsa dsad gff sh\\gdh gsfgasdfafghsgsfdfshdgafgsgh gdsgdsfgdfgfd gadf gdsafshdgafdsgs 
+Tugas
 </div>
 ';
 		$this->renderBlock('js', get_defined_vars()) /* line 7 */;

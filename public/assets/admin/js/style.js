@@ -26,6 +26,39 @@ window.addEventListener("click", (e)=>{
             value.innerHTML = "";   
         }
     });
+
+
+    let sidebar = el('.sidebar');
+    let topbar = el('.topbar');
+    let page = el('.page');
+
+    if(e.target.dataset.toggle){
+
+        // Sidebar Toggle
+        if(e.target.dataset.toggle == "sidebar"){
+            if(sidebar.classList.contains('show')){
+                if(e.target.dataset.toggle != "submenu"){
+                    sidebar.classList.remove('show');
+                    topbar.classList.remove('show');
+                    page.classList.remove('show');
+                }
+            }else{
+                sidebar.classList.add('show');
+                topbar.classList.add('show');
+                page.classList.add('show');
+            }
+        }
+        
+    }else{
+
+        let bodyWidth = document.body.clientWidth;
+        if(bodyWidth < 768){
+            sidebar.classList.remove('show');
+            topbar.classList.remove('show');
+            page.classList.remove('show');
+        }
+
+    }
 });
 
 

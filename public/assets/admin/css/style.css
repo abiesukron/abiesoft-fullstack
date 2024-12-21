@@ -17,7 +17,7 @@
     --danger-transparent: rgba(230, 16, 16,.25);
     --success: #009980;
     --success-transparent: rgba(0, 153, 128,.5);
-}
+} 
 
 * {
     font-family: Roboto, sans-serif;
@@ -331,9 +331,8 @@ h1, h2, h3, h4, h5, h6 {
 .blur {
     position: relative;
     height: 30px;
-    filter: blur(50px);
     background-color: var(--light);
-    z-index: 99;
+    z-index: 999;
 }
 
 .topbar {
@@ -342,6 +341,7 @@ h1, h2, h3, h4, h5, h6 {
     top: 0;
     right: 0;
     left: 250px;
+    overflow: unset;
     z-index: 99;
 }
 
@@ -349,6 +349,7 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     background-color: var(--putih);
     padding: 10px;
+    overflow: unset;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -370,6 +371,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .topbar > .search > .kiri > button,
 .topbar > .search > .kanan > button {
+    display: block;
     background: none;
     box-shadow: none;
     padding: 0;
@@ -383,7 +385,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .topbar > .search > .kiri > button:hover,
-.topbar > .search > .kanan > button:hover {
+.topbar > .search > .kanan > button:hover,
+.topbar > .search > .kiri > button:focus,
+.topbar > .search > .kanan > button:focus {
     background-color: var(--abu);
 }
 
@@ -394,18 +398,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .topbar > .search > .kiri > input {
+    display: block;
     padding: 10px 10px 10px 50px;
 }
 
 .topbar > .search > .kiri > svg {
+    display: block;
     position: absolute;
-    width: 22px;
-    left: 57px;
+    width: 18px;
+    left: 67px;
     fill: var(--abu3);
     cursor: pointer;
 }
 
 .topbar > .search > .kanan > .photo {
+    display: block;
     margin-left: 8px;
     width: 40px;
     height: 40px;
@@ -417,7 +424,8 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
 }
 
-.topbar > .search > .kanan > .photo:hover {
+.topbar > .search > .kanan > .photo:hover,
+.topbar > .search > .kanan > .photo:focus {
     border: 3px solid var(--abu2);
 }
 
@@ -446,6 +454,113 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto;
 }
 
+.page {
+    position: relative;
+    width: auto;
+    margin-top: 130px;
+    margin-bottom: 58px;
+    margin-left: 250px;
+    height: 1000px;
+    z-index: 0;
+    transition: margin-left .5s;
+}
+
+
+
+
+
+
+
+
+
+/*
+
+    Grid
+*/
+
+.row {
+    padding: 10px;
+}
+
+.row.less {
+    padding: 10px 0;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.row.less > [class*="col-"]:last-child{
+    padding: 10px;
+    padding-right: 0px;
+}
+
+.row.less > [class*="col-"]:first-child{
+    padding: 10px;
+    padding-left: 0px;
+}
+
+.col-1 {
+    width: 8.33%;
+}
+
+.col-2 {
+    width: 16.66%;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.col-4 {
+    width: 33.33%;
+}
+
+.col-5 {
+    width: 41.66%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col-7 {
+    width: 58.33%;
+}
+
+.col-8 {
+    width: 66.66%;
+}
+
+.col-9 {
+    width: 75%;
+}
+
+.col-10 {
+    width: 83.33%;
+}
+
+.col-11 {
+    width: 91.66%;
+}
+
+.col-12 {
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+/*
+    Card
+*/
+
 .card {
     background-color: var(--putih);
     box-shadow: -2px 2px 12px -2px rgba(89,89,89,0.12);
@@ -458,12 +573,348 @@ h1, h2, h3, h4, h5, h6 {
     padding: 30px;
 }
 
-.page {
-    position: relative;
-    width: auto;
-    margin-top: 130px;
-    margin-bottom: 58px;
-    margin-left: 250px;
-    height: 1000px;
-    z-index: 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+    Media
+*/
+
+@media only screen and (max-width: 600px) {
+    .sidebar {
+        left: -250px;
+        transition: left .5s;
+    }
+
+    .sidebar.show {
+        left: 0;
+        transition: left .5s;
+    }
+
+    .topbar {
+        left: 0px;
+        transition: left .5s;
+    }
+
+    .topbar.show {
+        left: 250px;
+        transition: left .5s;
+    }
+
+    .container {
+        max-width: auto;
+        margin: 0 20px;
+    }
+
+    .page {
+        margin-left: 0;
+        transition: margin-left .5s;
+    }
+
+    .page.show {
+        margin-left: 250px;
+        transition: margin-left .5s;
+    }
+
+    .topbar > .search > .kanan > button {
+        display: none;
+    }
+
+    .topbar > .search > .kiri > input {
+        display: none;
+    }
+
+    .topbar > .search > .kanan > .photo {
+        display: block;
+    }
+
+    .topbar.show > .search > .kanan > .photo {
+        display: none;
+    }
+
+    .topbar > .search > .kiri > svg {
+        display: block;
+    }
+
+    .topbar.show > .search > .kiri > svg {
+        display: none;
+    }
+}
+
+
+
+@media only screen and (min-width: 600px) {
+    .sidebar {
+        left: -250px;
+        transition: left .5s;
+    }
+
+    .sidebar.show {
+        left: 0;
+        transition: left .5s;
+    }
+
+    .topbar {
+        left: 0px;
+        overflow: unset;
+        transition: left .5s;
+    }
+
+    .topbar.show {
+        left: 250px;
+        overflow: hidden;
+        transition: left .5s;
+    }
+
+    .container {
+        max-width: auto;
+        margin: 0 20px;
+    }
+
+    .page {
+        margin-left: 0;
+        transition: margin-left .5s;
+    }
+
+    .page.show {
+        margin-left: 250px;
+        transition: margin-left .5s;
+    }
+
+    .topbar > .search > .kanan > button {
+        display: none;
+    }
+
+    .topbar > .search > .kiri > input {
+        display: none;
+    }
+}
+
+
+
+@media only screen and (min-width: 768px) {
+    .sidebar {
+        left: 0;
+        transition: left .5s;
+    }
+
+    .sidebar.show {
+        left:-250px;
+        transition: left .5s;
+    }
+
+    .topbar {
+        left: 250px;
+        overflow: unset;
+        transition: left .5s;
+    }
+
+    .topbar.show {
+        left: 0;
+        overflow: unset;
+        transition: left .5s;
+    }
+
+    .container {
+        max-width: 460px;
+        margin: 0 auto;
+    }
+
+    .container.show {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .page {
+        margin-left: 250px;
+        transition: margin-left .5s;
+    }
+
+    .page.show {
+        margin-left: 0;
+        transition: margin-left .5s;
+    }
+
+    .topbar > .search > .kanan > button {
+        display: block;
+    }
+
+    .topbar > .search > .kiri > input {
+        display: block;
+    }
+}
+
+
+
+@media only screen and (min-width: 992px) {
+    .sidebar {
+        left: 0;
+        transition: left .5s;
+    }
+
+    .sidebar.show {
+        left: -250px;
+        transition: left .5s;
+    }
+
+    .topbar {
+        left: 250px;
+        overflow: unset;
+        transition: left .5s;
+    }
+
+    .topbar.show {
+        left: 0;
+        overflow: unset;
+        transition: left .5s;
+    }
+
+    .container {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .container.show {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .page {
+        margin-left: 250px;
+        transition: margin-left .5s;
+    }
+
+    .page.show {
+        margin-left: 0;
+        transition: margin-left .5s;
+    }
+
+    .topbar > .search > .kanan > button {
+        display: block;
+    }
+
+    .topbar > .search > .kiri > input {
+        display: block;
+    }
+}
+
+
+
+@media only screen and (min-width: 1200px) {
+    .sidebar {
+        left: 0;
+        transition: left .5s;
+    }
+
+    .sidebar.show {
+        left: -250px;
+        transition: left .5s;
+    }
+
+    .topbar {
+        left: 250px;
+        overflow: unset;
+        transition: left .5s;
+    }
+
+    .topbar.show {
+        left: 0;
+        overflow: unset;
+        transition: left .5s;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .container.show {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .page {
+        margin-left: 250px;
+        transition: margin-left .5s;
+    }
+
+    .page.show {
+        margin-left: 0;
+        transition: margin-left .5s;
+    }
+
+    .topbar > .search > .kanan > button {
+        display: block;
+    }
+
+    .topbar > .search > .kiri > input {
+        display: block;
+    }
+}
+
+
+@media only screen and (min-width: 1600px) {
+    .sidebar {
+        left: 0;
+        transition: left .5s;
+    }
+
+    .sidebar.show {
+        left: -250px;
+        transition: left .5s;
+    }
+
+    .topbar {
+        left: 250px;
+        overflow: unset;
+        transition: left .5s;
+    }
+
+    .topbar.show {
+        left: 0;
+        overflow: unset;
+        transition: left .5s;
+    }
+
+    .container {
+        max-width: 1300px;
+        margin: 0 auto;
+    }
+
+    .container.show {
+        max-width: 1500px;
+        margin: 0 auto;
+    }
+
+    .page {
+        margin-left: 250px;
+        transition: margin-left .5s;
+    }
+
+    .page.show {
+        margin-left: 0;
+        transition: margin-left .5s;
+    }
+
+    .topbar > .search > .kanan > button {
+        display: block;
+    }
+
+    .topbar > .search > .kiri > input {
+        display: block;
+    }
 }
