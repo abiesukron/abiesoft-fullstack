@@ -3,6 +3,7 @@
 :root {
     --primary: #1B84FF;
     --primary-hover: #0f6fdd;
+    --primary-transparent: rgba(27, 132, 255,.14);
     --aksen-1: #335e71;
     --aksen-2: #deba4c;
     --abu: #e2e2e2;
@@ -212,13 +213,13 @@ h1, h2, h3, h4, h5, h6 {
 .sidebar > .sidebar-menu > ul > li > ul {
     height: 0px;
     overflow: hidden;
-    /* transition: all .5s; */
+    transition: height .5s;
 }
 
 .sidebar > .sidebar-menu > ul > li > ul.show {
-    height: 100%;
+    height: max-content;
     overflow: hidden;
-    /* transition: all .5s; */
+    transition: height .5s;
 }
 
 .sidebar > .sidebar-menu > ul > li > ul > li > a{
@@ -270,7 +271,7 @@ h1, h2, h3, h4, h5, h6 {
 .sidebar > .sidebar-bottom > .cover {
     width: 40px;
     height: 40px;
-    background-color: var(--abu3);
+    background-color: var(--primary-transparent);
     overflow: hidden;
     border-radius: 50%;
     border: 2px solid var(--light);
@@ -416,7 +417,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-left: 8px;
     width: 40px;
     height: 40px;
-    background-color: var(--abu3);
+    background-color: var(--primary-transparent);
     border-radius: 50%;
     overflow: hidden;
     margin-right: 5px;
@@ -574,6 +575,252 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
+
+
+
+
+
+
+
+/*
+    Popup Profile
+*/
+.popup-profile {
+    width: 270px;
+    height: 0;
+    position: absolute;
+    top: 100px;
+    right: -20px;
+    overflow: hidden;
+    transition: top .5s;
+}
+
+.popup-profile.show {
+    width: 270px;
+    height: max-content;
+    top: 65px;
+    transition: top .5s;
+}
+
+.popup-profile > .area,
+.popup-profile.show > .area {
+    width: 240px;
+    padding: 20px;
+    margin: 10 auto;
+    background-color: var(--putih);
+    border-radius: 8px;
+    box-shadow: -2px 2px 12px -2px rgba(89,89,89,0.12);
+    -webkit-box-shadow: -2px 2px 12px -2px rgba(89,89,89,0.12);
+    -moz-box-shadow: -2px 2px 12px -2px rgba(89,89,89,0.12);
+}
+
+.popup-profile > .area > .cover,
+.popup-profile.show > .area > .cover {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    background-color: var(--primary-transparent);
+}
+
+.popup-profile > .area > .cover > img,
+.popup-profile.show > .area > .cover > img{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.popup-profile > .area > .info,
+.popup-profile.show > .area > .info,
+.popup-profile.show > .area > .info {
+    display: block;
+    padding: 15px 0;
+}
+
+.popup-profile > .area > .info > h4,
+.popup-profile > .area > .info > small,
+.popup-profile.show > .area > .info > h4,
+.popup-profile.show > .area > .info > small {
+    display: block;
+    text-align: center;
+}
+
+.popup-profile > .area > .footer-button,
+.popup-profile.show > .area > .footer-button {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1px;
+}
+
+.popup-profile > .area > .footer-button > button,
+.popup-profile.show > .area > .footer-button > button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: var(--light);
+    padding: 10px;
+}
+
+.popup-profile > .area > .footer-button > button:nth-child(1),
+.popup-profile.show > .area > .footer-button > button:nth-child(1) {
+    border-radius: 8px 0 0 8px;
+}
+
+.popup-profile > .area > .footer-button > button:nth-child(2),
+.popup-profile.show > .area > .footer-button > button:nth-child(2) {
+    border-radius: 0 8px 8px 0;
+}
+
+.popup-profile > .area > .footer-button > button:hover,
+.popup-profile.show > .area > .footer-button > button:hover {
+    background-color: var(--abu);
+}
+
+.popup-profile > .area > .footer-button > button > svg,
+.popup-profile.show > .area > .footer-button > button > svg {
+    width: 18px;
+    margin-right: 5px;
+}
+
+
+
+
+
+/*
+    Popup Standar
+*/
+.popup-standar {
+    width: 300px;
+    height: 0;
+    position: absolute;
+    top: 100px;
+    right: -20px;
+    overflow: hidden;
+    transition: top .5s;
+}
+
+.popup-standar.show {
+    width: 300px;
+    height: max-content;
+    top: 65px;
+    transition: top .5s;
+}
+
+.popup-standar > .area,
+.popup-standar.show > .area {
+    width: 280px;
+    margin: 10 auto;
+    background-color: var(--putih);
+    border-radius: 8px;
+    box-shadow: -2px 2px 12px -2px rgba(89,89,89,0.12);
+    -webkit-box-shadow: -2px 2px 12px -2px rgba(89,89,89,0.12);
+    -moz-box-shadow: -2px 2px 12px -2px rgba(89,89,89,0.12);
+}
+
+.popup-standar > .area > .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.popup-standar > .area > .header > .badge {
+    padding: 3px 5px;
+    background-color: var(--danger);
+    color: var(--putih);
+    border-radius: 4px;
+    font-size: 10pt;
+    font-weight: 500;
+}
+
+.popup-standar > .area > .body {
+    display: block;
+}
+
+.popup-standar > .area > .body > ul {
+    max-height: 300px;
+    overflow: auto;
+    padding: 0 3px;
+}
+
+.popup-standar > .area > .body > ul > li {
+    position: relative;
+    padding: 10px 20px;
+    min-height: 60px;
+    cursor: pointer;
+}
+
+.popup-standar > .area > .body > ul > li:hover {
+    background-color: var(--light);
+}
+
+.popup-standar > .area > .body > ul > li > .cover {
+    position: absolute;
+    top: 10px;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.popup-standar > .area > .body > ul > li > .cover > img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    background-color: var(--primary-transparent);
+}
+
+.popup-standar > .area > .body > ul > li > .info {
+    margin-left: 60px;
+}
+
+.popup-standar > .area > .body > ul > li > .info > div{
+    display: block;
+}
+
+.popup-standar > .area > .body > ul > li > .info > small{
+    display: block;
+    font-size: 11pt;
+    margin-top: 10px;
+    color: var(--abu3);
+}
+
+.popup-standar > .area > .body > ul::-webkit-scrollbar {
+    width: 5px;
+}
+
+.popup-standar > .area > .body > ul::-webkit-scrollbar-track {
+    width: 5px;
+    background-color: var(--light);
+}
+
+.popup-standar > .area > .body > ul::-webkit-scrollbar-thumb {
+    width: 5px;
+    background-color: var(--abu);
+    border-radius: 2px;
+}
+
+.popup-standar > .area > .footer {
+    display: block;
+    padding: 20px;
+}
+
+.popup-standar > .area > .footer > .mini-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 15px;
+    border-radius: 4px;
+    background-color: var(--primary-transparent);
+    color: var(--primary);
+    margin: 0 auto;
+}
+
+.popup-standar > .area > .footer > .mini-button > svg{
+    width: 18px;
+}
 
 
 

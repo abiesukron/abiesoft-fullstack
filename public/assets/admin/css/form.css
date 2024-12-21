@@ -91,10 +91,6 @@
 
 .form-single-button > button {
     width: 100%;
-}
-
-button {
-    cursor: pointer;
     background-color: var(--primary);
     color: var(--putih);
     padding: 13px 30px;
@@ -102,11 +98,19 @@ button {
     border-radius: 8px;
 }
 
-button:hover {
+.form-single-button > button:hover {
     background-color: var(--primary-hover);
     box-shadow: 5px 10px 10px -12px rgba(27,132,255,0.75);
     -webkit-box-shadow: 5px 10px 10px -12px rgba(27,132,255,0.75);
     -moz-box-shadow: 5px 10px 10px -12px rgba(27,132,255,0.75);
+}
+
+button,
+a,
+label,
+input[type="button"],
+input[type="submit"] {
+    cursor: pointer;
 }
 
 

@@ -31,6 +31,9 @@ window.addEventListener("click", (e)=>{
     let sidebar = el('.sidebar');
     let topbar = el('.topbar');
     let page = el('.page');
+    let profile = el('#profile');
+    let notifikasi = el('#notifikasi');
+    let pesan = el('#pesan');
 
     if(e.target.dataset.toggle){
 
@@ -48,6 +51,39 @@ window.addEventListener("click", (e)=>{
                 page.classList.add('show');
             }
         }
+
+        // Profile Toggle
+        if(e.target.dataset.toggle == "profile"){
+            if(profile.classList.contains('show')){
+                profile.classList.remove('show');
+            }else{
+                profile.classList.add('show');
+                notifikasi.classList.remove('show');
+                pesan.classList.remove('show');
+            }
+        }
+
+        // Notifikasi Toggle
+        if(e.target.dataset.toggle == "notifikasi"){
+            if(notifikasi.classList.contains('show')){
+                notifikasi.classList.remove('show');
+            }else{
+                notifikasi.classList.add('show');
+                profile.classList.remove('show');
+                pesan.classList.remove('show');
+            }
+        }
+
+        // Pesan Toggle
+        if(e.target.dataset.toggle == "pesan"){
+            if(pesan.classList.contains('show')){
+                pesan.classList.remove('show');
+            }else{
+                pesan.classList.add('show');
+                profile.classList.remove('show');
+                notifikasi.classList.remove('show');
+            }
+        }
         
     }else{
 
@@ -57,6 +93,10 @@ window.addEventListener("click", (e)=>{
             topbar.classList.remove('show');
             page.classList.remove('show');
         }
+
+        profile.classList.remove('show');
+        notifikasi.classList.remove('show');
+        pesan.classList.remove('show');
 
     }
 });
