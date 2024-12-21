@@ -8,6 +8,7 @@ use Latte\Engine;
 class Controller {
 
     public string   $url = "",
+        $namaapp = "",
         $apikey = "",
         $prefix = "",
         $title = "",
@@ -24,6 +25,7 @@ class Controller {
 
         $d = new Controller;
         $d->url = Config::baseURL();
+        $d->namaapp = Config::env('APP_NAME');
         $d->apikey = Config::env('APIKEY');
         $d->prefix = Config::env('ADMIN_PANEL');
         $d->title = "";

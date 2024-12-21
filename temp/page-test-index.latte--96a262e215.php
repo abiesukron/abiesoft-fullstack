@@ -46,7 +46,7 @@ final class Template_96a262e215 extends Latte\Runtime\Template
 	/** {block content} on line 3 */
 	public function blockContent(array $ʟ_args): void
 	{
-		echo '<div>Hello World</div>
+		echo '<div class=\'container\'>Hello World</div>
 ';
 	}
 }

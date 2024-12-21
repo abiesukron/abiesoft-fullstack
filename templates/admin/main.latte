@@ -12,7 +12,12 @@
     {block css}{/block}
 </head>
 <body>
-    {block content}{/block}
+    {include './components/topbar.latte'}
+    {include './components/sidebar.latte'}
+
+    <div class='page'>
+        {block content}{/block}
+    </div>
     <div id='toasthere'></div>
     <script src="{$url}assets/admin/js/style.js"></script>
     <script n:syntax='off'>

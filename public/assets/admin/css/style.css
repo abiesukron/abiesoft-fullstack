@@ -3,11 +3,14 @@
 :root {
     --primary: #1B84FF;
     --primary-hover: #0f6fdd;
-    --aksen: #FD8B51;
+    --aksen-1: #335e71;
+    --aksen-2: #deba4c;
     --abu: #e2e2e2;
     --abu2: #d1cece;
     --abu3: #a0a0a0;
     --light: #f0f0f0;
+    --dark: #1A120B;
+    --dark-hover: #2b241f;
     --font: #181C14;
     --putih: #fff;
     --danger: #e61010;
@@ -27,6 +30,7 @@
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -44,9 +48,402 @@ body {
 
 .full { width: 100%; }
 
+
+
+/*
+    Title
+*/
+
+h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+    Sidebar
+*/
+
+.sidebar {
+    position: fixed;
+    width: 250px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: var(--dark);
+    color: var(--light);
+}
+
+.sidebar > .sidebar-top {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.sidebar > .sidebar-top > .logo{
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+}
+
+.sidebar > .sidebar-top > .logo > img{
+    width: 100%;
+}
+
+.sidebar > .sidebar-top > .label{
+    font-size: 18pt;
+    font-weight: 900;
+}
+
+.sidebar > .sidebar-menu {
+    position: absolute;
+    top: 80px;
+    right: 0;
+    bottom: 100px;
+    left: 0;
+}
+
+.sidebar > .sidebar-menu > ul {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    overflow-y: none;
+    scroll-behavior: smooth;
+    padding: 20px;
+    border-top: 1px solid var(--dark-hover);
+    border-bottom: 1px solid var(--dark-hover);
+}
+
+.sidebar > .sidebar-menu > ul::-webkit-scrollbar {
+    width: 5px;
+    background-color: var(--dark);
+}
+
+.sidebar > .sidebar-menu > ul::-webkit-scrollbar-track {
+    width: 5px;
+    background-color: var(--dark);
+}
+
+.sidebar > .sidebar-menu > ul::-webkit-scrollbar-thumb {
+    width: 5px;
+    background-color: var(--dark-hover);
+    border-radius: 3px;
+}
+
+.sidebar > .sidebar-menu > ul > div {
+    padding: 30px 0 15px 0;
+    font-weight: 500;
+    font-size: 10pt;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--dark-hover);
+    margin-bottom: 10px;
+}
+
+.sidebar > .sidebar-menu > ul > li > a{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 45px;
+    color: var(--putih);
+    border-radius: 8px;
+}
+
+.sidebar > .sidebar-menu > ul > li > a > .badge {
+    position: absolute;
+    top: 11px;
+    right: 10px;
+    background-color: var(--danger);
+    padding: 3px 5px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 10pt;
+    font-weight: 500;
+}
+
+.sidebar > .sidebar-menu > ul > li:hover > a,
+.sidebar > .sidebar-menu > ul > li.active > a {
+    background-color: var(--dark-hover);
+}
+
+.sidebar > .sidebar-menu > ul > li > a > svg:nth-child(1){
+    position: absolute;
+    width: 25px;
+    top: 8px;
+    left: 10px;
+    fill: var(--light);
+    transition: fill .5s;
+}
+
+.sidebar > .sidebar-menu > ul > li > a > svg:nth-child(2){
+    position: absolute;
+    width: 18px;
+    top: 12px;
+    right: 10px;
+    fill: var(--light);
+    transition: fill .5s;
+}
+
+.sidebar > .sidebar-menu > ul > li:hover > a > svg,
+.sidebar > .sidebar-menu > ul > li.active > a > svg{
+    fill: var(--aksen-2);
+    transition: fill .5s;
+}
+
+.sidebar > .sidebar-menu > ul > li > a > span{
+    position: absolute;
+    top: 12px;
+    left: 45px;
+}
+
+.sidebar > .sidebar-menu > ul > li > ul {
+    height: 0px;
+    overflow: hidden;
+    /* transition: all .5s; */
+}
+
+.sidebar > .sidebar-menu > ul > li > ul.show {
+    height: 100%;
+    overflow: hidden;
+    /* transition: all .5s; */
+}
+
+.sidebar > .sidebar-menu > ul > li > ul > li > a{
+    position: relative;
+    display: block;
+    width: auto;
+    height: 45px;
+    margin-left: 40px;
+    color: var(--putih);
+    border-radius: 8px;
+    padding-left: 5px;
+}
+
+.sidebar > .sidebar-menu > ul > li:hover > ul > li > a{
+    background-color: none;
+}
+
+.sidebar > .sidebar-menu > ul > li:hover > ul > li:hover > a{
+    color: var(--aksen-2);
+}
+
+.sidebar > .sidebar-menu > ul > li > ul > li > a > span{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    height: 100%;
+}
+
+.sidebar > .sidebar-bottom {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    height: 60px;
+    border-radius: 8px;
+    background-color: var(--dark-hover);
+    padding: 10px;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.sidebar > .sidebar-bottom:hover {
+    -webkit-box-shadow: 1px 3px 21px 1px rgba(222, 186, 76,0.37);
+    -moz-box-shadow: 1px 3px 21px 1px rgba(222, 186, 76,0.37);
+    box-shadow: 1px 3px 21px 1px rgba(222, 186, 76,0.37);
+    transition: all .5s;
+}
+
+.sidebar > .sidebar-bottom > .cover {
+    width: 40px;
+    height: 40px;
+    background-color: var(--abu3);
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px solid var(--light);
+}
+
+.sidebar > .sidebar-bottom > .cover > img {
+    width: 38px;
+    height: 38px;
+    object-fit: cover;
+}
+
+.sidebar > .sidebar-bottom > .info{
+    position: absolute;
+    left: 50px;
+    right: 10px;
+    top: 10px;
+    padding: 10px 10px;
+    overflow: hidden;
+}
+
+.sidebar > .sidebar-bottom > .info > small {
+    width: 100%;
+    font-size: 9pt;
+    display: block;
+}
+
+.sidebar > .sidebar-bottom > svg{
+    width: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+}
+
+.sidebar > .sidebar-bottom:hover > svg{
+    width: 20px;
+    cursor: pointer;
+    position: absolute;
+    fill: var(--aksen-2);
+    top: 20px;
+    right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*
+    Topbar
+*/
+
+.blur {
+    position: relative;
+    height: 30px;
+    filter: blur(50px);
+    background-color: var(--light);
+    z-index: 99;
+}
+
+.topbar {
+    position: fixed;
+    display: block;
+    top: 0;
+    right: 0;
+    left: 250px;
+    z-index: 99;
+}
+
+.topbar > .search {
+    position: relative;
+    background-color: var(--putih);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: -2px 2px 12px -2px rgba(89,89,89,0.12);
+    -webkit-box-shadow: -2px 2px 12px -2px rgba(89,89,89,0.12);
+    -moz-box-shadow: -2px 2px 12px -2px rgba(89,89,89,0.12);
+    z-index: 99;
+}
+
+.topbar > .search > .kiri,
+.topbar > .search > .kanan {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.topbar > .search > .kiri > button,
+.topbar > .search > .kanan > button {
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 8px;
+}
+
+.topbar > .search > .kiri > button:hover,
+.topbar > .search > .kanan > button:hover {
+    background-color: var(--abu);
+}
+
+.topbar > .search > .kiri > button > svg,
+.topbar > .search > .kanan > button > svg {
+    width: 22px;
+    fill: var(--abu3);
+}
+
+.topbar > .search > .kiri > input {
+    padding: 10px 10px 10px 50px;
+}
+
+.topbar > .search > .kiri > svg {
+    position: absolute;
+    width: 22px;
+    left: 57px;
+    fill: var(--abu3);
+    cursor: pointer;
+}
+
+.topbar > .search > .kanan > .photo {
+    margin-left: 8px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--abu3);
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 5px;
+    border: 3px solid var(--light);
+    cursor: pointer;
+}
+
+.topbar > .search > .kanan > .photo:hover {
+    border: 3px solid var(--abu2);
+}
+
+.topbar > .search > .kanan > .photo > img {
+    width: 37px;
+    height: 37px;
+    object-fit: cover;
+}
+
+    
+
+
+
+
+
+
+
+
+
+/*
+    Page
+*/
+
 .container {
-    max-width: 450px;
-    margin: 50px auto;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .card {
@@ -61,4 +458,12 @@ body {
     padding: 30px;
 }
 
-
+.page {
+    position: relative;
+    width: auto;
+    margin-top: 130px;
+    margin-bottom: 58px;
+    margin-left: 250px;
+    height: 1000px;
+    z-index: 0;
+}

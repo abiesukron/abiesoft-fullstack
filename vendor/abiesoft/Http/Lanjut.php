@@ -21,7 +21,7 @@ class Lanjut {
                         exit();
                 }
             }
-            header('location:' . Config::baseURL() . "/" . $location);
+            header('location:' . Config::baseURL() . $location);
             exit();
         }
     }

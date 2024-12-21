@@ -27,3 +27,28 @@ window.addEventListener("click", (e)=>{
         }
     });
 });
+
+
+
+
+
+/*
+    Sidebar
+*/
+
+let menu = document.querySelectorAll('li[data-menu]');
+if(menu){
+    for(let i=0; i<menu.length; i++){
+        if(menu[i].dataset.menu == 'submenu') {
+            menu[i].addEventListener('click', ()=>{
+                if(menu[i].children[1].classList.contains('show')){
+                    menu[i].children[1].classList.remove('show');
+                    menu[i].children[0].children[1].setAttribute('style','transform: rotate(0deg)');
+                }else{
+                    menu[i].children[1].classList.add('show');
+                    menu[i].children[0].children[1].setAttribute('style','transform: rotate(90deg)');
+                }
+            });
+        }
+    }
+}

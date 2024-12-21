@@ -3,19 +3,15 @@
 namespace App\Controller\Admin;
 
 use Abiesoft\Resources\Http\Controller;
+use Abiesoft\Resources\Http\Lanjut;
+use Abiesoft\Resources\Utilities\Config;
 
 class TestController extends Controller
 {
 
     public function index()
     {
-        return $this->view(
-            page: 'test/index',
-            model: 'admin',
-            data: [
-                'title' => 'Test',
-            ]
-        );
+        Lanjut::ke(Config::env('ADMIN_PANEL').'/test/read/tugas');
     }
 
     public function add()
@@ -31,20 +27,19 @@ class TestController extends Controller
 
     public function edit($parameter)
     {
-        /*
-
-            Halaman form edit data
-            method GET
-        */
+        Lanjut::ke(Config::env('ADMIN_PANEL').'/test/read/tugas');
     }
 
     public function read($parameter)
     {
-        /*
-
-            Halaman detail data
-            method GET
-        */
+        $page = $parameter[0];
+        return $this->view(
+            page: 'test/sample/'.$page,
+            model: 'admin',
+            data: [
+                'title' => 'Test | '.ucfirst($page),
+            ]
+        );
     }
 
 }

@@ -91,10 +91,10 @@ trait Request {
         }
 
         if (explode("/", $path)[1] == "admin") {
-            if (count(explode("/", $path)) > 7) {
+            if (count(explode("/", $path)) > 5) {
                 $dataparam = explode("/", $path);
                 for ($i = 0; $i < count($dataparam); $i++) {
-                    if ($i > 6) {
+                    if ($i > 4) {
                         array_push($params, $dataparam[$i]);
                     }
                 }
