@@ -1,46 +1,36 @@
 let dataList = [];
 
 function toCardList(x){
-
-    let mode = x.mode;
-    let url = x.url;
-    let targetID = x.target;
-    let namaList = x.nama;
-
-    if(dataList[namaList]){
-        fetchListToTarget(x);
-    }else{
-        loadDataFromService(x);
-    }
-
-}
-
-function loadDataFromService(x) {
     
-    let mode = x.mode;
-    let url = x.url;
-    let targetID = x.target;
     let namaList = x.nama;
+    let url = x.url;
 
-    fetch(Baseurl + 'api/test/tugas', {
+    fetch(Baseurl + url, {
         method: 'GET',
         headers: HEADER
     }).then(response => response.json()).then(res => {
-        dataList[namaList] = res.data;
-        fetchListToTarget(x);
+
+        if(dataList[namaList] != res.data){
+            dataList[namaList] = res.data;
+            fetchListToTarget(x);
+        }else{
+            fetchListToTarget(x);
+        }
+
     }).catch(error => {
         console.log(error);
         return false;
     });
+
 }
 
 function fetchListToTarget(x) {
     let mode = x.mode;
-    let url = x.url;
-    let targetID = x.target;
-    let namaList = x.nama;
 
     switch(mode){
+        case 'surat':
+            fetchListToTargetWithSurat(x);
+        break;
         case 'number':
             fetchListToTargetWithNumber(x);
         break;
@@ -85,6 +75,56 @@ function fetchListToTargetWithEmpty(x) {
     `;
 }
 
+function fetchListToTargetWithSurat(x) {
+    let targetID = x.target;
+    let namaList = x.nama;
+
+    let showBox = el('#'+targetID);
+    showBox.innerHTML = `
+        <div class='p-20'><div class='loader'></div></div>
+    `;
+    
+    let data = dataList[namaList];
+
+    let konten = "";
+    for(let i=0; i<data.length; i++){
+        konten += `
+            <li>
+                <div class='info icon'>
+                    <div class='number'>
+                        <span>`+(Number(i)+1)+`</span>
+                    </div>
+                    <div>
+                        <span>`+data[i].noreg+`</span>
+                        <div>`+data[i].nama+`</div>
+                        <div>`+data[i].perihal+`</div>
+                        <small>`+data[i].nosurat+` | `+data[i].tglsurat+`</small>
+                    </div>
+                </div>
+                <div class='opsi'>
+                    <div>
+                        <div>Model</div>
+                        <div>Penanganan</div>
+                        <div>Terakhir</div>
+                        <div class='display-4'>`+data[i].penanganan+`</div>
+                        <button>
+                            <span>Detail</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                <path fill-rule="evenodd" d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </li>
+        `;  
+    }
+    showBox.innerHTML = `
+        <ul class='unset-cursor'>
+            `+konten+`
+        </ul>
+    `;
+}
+
 function fetchListToTargetWithNumber(x) {
     let targetID = x.target;
     let namaList = x.nama;
@@ -95,6 +135,7 @@ function fetchListToTargetWithNumber(x) {
     `;
     
     let data = dataList[namaList];
+
     let konten = "";
     for(let i=0; i<data.length; i++){
         konten += `

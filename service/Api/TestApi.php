@@ -30,12 +30,38 @@ class TestApi extends Service
     protected function getWithParam($param)
     {
         return match($param[0]){
-            'tugas' => $this->dataTugas(),
+            'surat' => $this->dataSurat(),
+            'user' => $this->dataUser(),
             default => $this->emptyData()
         };
     }
 
-    protected function dataTugas()
+    protected function dataSurat()
+    {
+        $data = [
+            [
+                'id' => 1,
+                'noreg' => '1/12/RES/I/2024',
+                'nama' => 'Andi Kusuma',
+                'perihal' => 'pengaduan',
+                'nosurat' => 'B/1/LAW/2024',
+                'tglsurat' => '1 Januari 2024',
+                'penanganan' => 'B'
+            ],
+            [
+                'id' => 1,
+                'noreg' => '3/2/RES/I/2024',
+                'nama' => 'Budi Santoso',
+                'perihal' => 'Keluhan masyarakat',
+                'nosurat' => '1/BUD/2024',
+                'tglsurat' => '1 Januari 2024',
+                'penanganan' => 'A'
+            ]
+        ];
+        self::result($data);
+    }
+
+    protected function dataUser()
     {
         $data = [
             [

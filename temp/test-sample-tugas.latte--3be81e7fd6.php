@@ -54,8 +54,8 @@ final class Template_3be81e7fd6 extends Latte\Runtime\Template
     <div class=\'row\'>
         <div class=\'col-12\'>
             <div class=\'card\'>
-                <div class=\'card-body\'>
-                    Full
+                <div class=\'card-wall\'>
+                    <div class=\'display-5\'>Tugas</div>
                 </div>
             </div>
         </div>
@@ -94,7 +94,7 @@ final class Template_3be81e7fd6 extends Latte\Runtime\Template
                 </div>
             </div>
         </div>
-        <div class=\'col-6\'>
+        <div class=\'col-9\'>
             <div class=\'card\'>
                 <div class=\'card-header-search\'>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -105,26 +105,14 @@ final class Template_3be81e7fd6 extends Latte\Runtime\Template
                 <div class=\'card-list\' id=\'listshow\'></div>
             </div>
         </div>
-        <div class=\'col-3\'>
-            <div class=\'card\'>
-                <div class=\'card-header\'>
-                    <div class=\'title\'>
-                        Label
-                    </div>
-                </div>
-                <div class=\'card-body\'>
-                    Kiri
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 ';
-		$this->renderBlock('js', get_defined_vars()) /* line 73 */;
+		$this->renderBlock('js', get_defined_vars()) /* line 61 */;
 	}
 
 
-	/** {block js} on line 73 */
+	/** {block js} on line 61 */
 	public function blockJs(array $ʟ_args): void
 	{
 		echo '<script>
@@ -148,8 +136,8 @@ function loadList(x) {
         switch(x){
             case \'surat\':
                 toCardList({
-                    mode: \'number\',
-                    url: \'api/test/tugas\',
+                    mode: \'surat\',
+                    url: \'api/test/surat\',
                     target: \'listshow\',
                     nama: \'surat\'
                 })
@@ -157,7 +145,7 @@ function loadList(x) {
             case \'user\':
                 toCardList({
                     mode: \'image\',
-                    url: \'api/test/tugas\',
+                    url: \'api/test/user\',
                     target: \'listshow\',
                     nama: \'user\'
                 })
@@ -165,7 +153,7 @@ function loadList(x) {
             default:
                 toCardList({
                     mode: \'empty\',
-                    url: \'api/test/tugas\',
+                    url: \'api/test/empty\',
                     target: \'listshow\',
                     nama: \'user\'
                 })
@@ -176,7 +164,7 @@ function loadList(x) {
 
 toCardList({
     mode: \'empty\',
-    url: \'api/test/tugas\',
+    url: \'api/test/empty\',
     target: \'listshow\',
     nama: \'user\'
 });
