@@ -30,42 +30,62 @@ trait Request {
         (substr($_SERVER['REQUEST_URI'], -1) == "/") ? $path = substr($_SERVER['REQUEST_URI'], 0, -1) : $path = $_SERVER['REQUEST_URI'];
         ($path == "") ? $path = "/" : $path = $path;
 
-        if(isset(explode("/",$path)[1]) == "admin"){
+        if(isset(explode("/",$path)[1])){
 
-            // Admin Route
-            if(count(explode("/", $path)) == 5){
-                if(explode("/", $path)[4] == "add"){
-                    $path = "/" . explode("/", $path)[1] . "/" . explode("/", $path)[2] . "/" . explode("/", $path)[3]. "/add";
-                }else{
-                    $path = $path;
-                }
-            }else if (count(explode("/", $path)) > 5) {
-                if(explode("/", $path)[4] == "edit" || explode("/", $path)[4] == "read"){
-                    $path = "/" . explode("/", $path)[1] . "/" . explode("/", $path)[2] . "/" . explode("/", $path)[3]. "/" .explode("/", $path)[4]. "/:parameter";
-                }else{
-                    $path = $path;
-                }
-            } else {
-                $path = $path;
-            }
+            if(explode("/",$path)[1] == "admin"){
 
-        }else{
-
-            // Api Route
-            if (count(explode("/", $path)) == 4) {
-                if (explode("/", $path)[3] != "excel") {
-                    $path = "/" . explode("/", $path)[1] . "/" . explode("/", $path)[2] . "/:id";
+                // Admin Route
+                if(count(explode("/", $path)) == 5){
+                    if(explode("/", $path)[4] == "add"){
+                        $path = "/" . explode("/", $path)[1] . "/" . explode("/", $path)[2] . "/" . explode("/", $path)[3]. "/add";
+                    }else{
+                        $path = $path;
+                    }
+                }else if (count(explode("/", $path)) > 5) {
+                    if(explode("/", $path)[4] == "edit" || explode("/", $path)[4] == "read"){
+                        $path = "/" . explode("/", $path)[1] . "/" . explode("/", $path)[2] . "/" . explode("/", $path)[3]. "/" .explode("/", $path)[4]. "/:parameter";
+                    }else{
+                        $path = $path;
+                    }
                 } else {
                     $path = $path;
                 }
-            } else if (count(explode("/", $path)) > 4) {
-                $path = "/" . explode("/", $path)[1] . "/" . explode("/", $path)[2] . "/:parameter";
-            } else {
-                $path = $path;
+    
+            }else if(explode("/",$path)[1] == "api"){
+                
+                // Api Route
+                if (count(explode("/", $path)) == 4) {
+                    if (explode("/", $path)[3] != "excel") {
+                        $path = "/" . explode("/", $path)[1] . "/" . explode("/", $path)[2] . "/:id";
+                    } else {
+                        $path = $path;
+                    }
+                } else if (count(explode("/", $path)) > 4) {
+                    $path = "/" . explode("/", $path)[1] . "/" . explode("/", $path)[2] . "/:parameter";
+                } else {
+                    $path = $path;
+                }
+                
+            }else{
+
+                if (count(explode("/", $path)) == 4) {
+                    if (explode("/", $path)[3] != "excel") {
+                        $path = "/" . explode("/", $path)[1] . "/" . explode("/", $path)[2] . "/:id";
+                    } else {
+                        $path = $path;
+                    }
+                } else if (count(explode("/", $path)) > 4) {
+                    $path = "/" . explode("/", $path)[1] . "/" . explode("/", $path)[2] . "/:parameter";
+                } else {
+                    $path = $path;
+                }
+                
             }
 
+        }else{
+            $path = $path;
         }
-        
+
         return $path;
     }
 

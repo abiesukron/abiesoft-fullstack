@@ -34,6 +34,10 @@
     scroll-behavior: smooth;
 }
 
+html {
+    overflow-x: hidden;
+}
+
 body {
     font-family: Roboto, sans-serif;
     overflow-x: hidden;
@@ -49,7 +53,7 @@ body {
 
 .full { width: 100%; }
 
-
+.p-20 { padding: 20px; }
 
 /*
     Title
@@ -399,15 +403,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .topbar > .search > .kiri > input {
+    width: 200px;
     display: block;
-    padding: 10px 10px 10px 50px;
+    padding: 10px 10px 10px 40px;
 }
 
 .topbar > .search > .kiri > svg {
     display: block;
     position: absolute;
     width: 18px;
-    left: 67px;
+    left: 57px;
     fill: var(--abu3);
     cursor: pointer;
 }
@@ -521,7 +526,7 @@ h1, h2, h3, h4, h5, h6 {
 .page {
     position: relative;
     width: auto;
-    margin-top: 130px;
+    margin-top: 115px;
     margin-bottom: 58px;
     margin-left: 250px;
     z-index: 0;
@@ -542,11 +547,9 @@ h1, h2, h3, h4, h5, h6 {
 */
 
 .row {
-    padding: 10px;
-}
-
-.row.less {
-    padding: 10px 0;
+    padding: 0;
+    margin-left: -10px;
+    margin-right: -10px;
 }
 
 .row::after {
@@ -555,14 +558,9 @@ h1, h2, h3, h4, h5, h6 {
     display: table;
 }
 
-.row.less > [class*="col-"]:last-child{
+[class*="col-"] {
+    float: left;
     padding: 10px;
-    padding-right: 0px;
-}
-
-.row.less > [class*="col-"]:first-child{
-    padding: 10px;
-    padding-left: 0px;
 }
 
 .col-1 {
@@ -620,6 +618,38 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
+
+/*
+    Badge
+*/
+.badge {
+    padding: 3px 5px;
+    background-color: var(--abu3);
+    color: var(--putih);
+    border-radius: 4px;
+    font-size: 10pt;
+    font-weight: 500;
+}
+
+.badge.danger {
+    background-color: var(--danger);
+}
+
+.badge.success {
+    background-color: var(--success);
+}
+
+.badge.warning {
+    background-color: var(--aksen-2);
+}
+
+
+
+
+
+
+
+
 /*
     Card
 */
@@ -632,9 +662,152 @@ h1, h2, h3, h4, h5, h6 {
     border-radius:8px;
 }
 
-.card-body {
-    padding: 30px;
+.card-header {
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--light);
 }
+
+.card-header > .title {
+    font-weight: 500;
+    font-size: 12pt;
+}
+
+.card-header > .opsi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-header-search {
+    position: relative;
+    padding: 20px 30px;
+    border-bottom: 1px solid var(--light);
+}
+
+.card-header-search > input {
+    width: 100%;
+    padding-left: 35px;
+}
+
+.card-header-search > svg {
+    position: absolute;
+    width: 20px;
+    left: 30px;
+    top: 18px;
+}
+
+.card-body {
+    padding: 20px 30px;
+}
+
+.card-list > ul {
+    display: block;
+    padding: 0 3px;
+}
+
+.card-list > ul > li{
+    position: relative;
+    padding: 20px 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-list > ul.unset-cursor > li{
+    cursor: unset;
+}
+
+.card-list > ul > li:hover{
+    background-color: var(--light);
+}
+
+.card-list > ul > li > .info > span {
+    margin-left: 0;
+}
+
+.card-list > ul > li > .info {
+    position: relative;
+    width: 80%;
+    z-index: 0;
+}
+
+.card-list > ul > li > .info.icon{
+    width: 65%;
+    position: relative;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+    z-index: 0;
+}
+
+.card-list > ul > li > .info.icon > div:nth-child(2) {
+    max-width: 65%;
+}
+
+.card-list > ul > li > .info.icon span{
+    display: block;
+    font-weight: 500;
+}
+
+.card-list > ul > li > .info.icon p{
+    margin: 10px 0;
+}
+
+.card-list > ul > li > .info.icon small{
+    display: block;
+    font-size: 10pt;
+}
+
+.card-list > ul > li > .info.icon > .cover{
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    background-color: var(--primary-transparent);
+    border-radius:8px;
+}
+
+.card-list > ul > li > .info.icon > .cover > img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.card-list > ul > li > .info.icon > .opsi{
+    position: absolute;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+}
+
+.card-list > ul > li > .opsi > button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px 10px;
+    border-radius: 4px;
+    font-size: 10pt;
+    background-color: var(--abu);
+    gap: 5px;
+    z-index: 99;
+}
+
+.card-list > ul > li > .opsi > button > span {
+    display: block;
+    font-size: 10pt;
+}
+
+.card-list > ul > li > .opsi > button > svg {
+    width: 18px;
+}
+
+
 
 
 
@@ -964,6 +1137,25 @@ h1, h2, h3, h4, h5, h6 {
     .topbar.show > .search > .kiri > svg {
         display: none;
     }
+    
+    .col-1,
+    .col-2,
+    .col-3,
+    .col-4,
+    .col-5,
+    .col-6,
+    .col-7,
+    .col-8,
+    .col-9,
+    .col-10,
+    .col-11,
+    .col-12 { 
+        width: 100%; 
+    }
+
+    .card-list > ul > li > .opsi > button > span {
+        display: none;
+    }
 }
 
 
@@ -1012,6 +1204,25 @@ h1, h2, h3, h4, h5, h6 {
 
     .topbar > .search > .kiri > input {
         display: none;
+    }
+    
+    .col-1,
+    .col-2,
+    .col-3,
+    .col-4,
+    .col-5,
+    .col-6,
+    .col-7,
+    .col-8,
+    .col-9,
+    .col-10,
+    .col-11,
+    .col-12 { 
+        width: 100%; 
+    }
+
+    .card-list > ul > li > .opsi > button > span {
+        display: block;
     }
 }
 
@@ -1065,6 +1276,25 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .topbar > .search > .kiri > input {
+        display: block;
+    }
+    
+    .col-1,
+    .col-2,
+    .col-3,
+    .col-4,
+    .col-5,
+    .col-6,
+    .col-7,
+    .col-8,
+    .col-9,
+    .col-10,
+    .col-11,
+    .col-12 { 
+        width: 100%; 
+    }
+
+    .card-list > ul > li > .opsi > button > span {
         display: block;
     }
 }
@@ -1121,6 +1351,58 @@ h1, h2, h3, h4, h5, h6 {
     .topbar > .search > .kiri > input {
         display: block;
     }
+
+    .col-1 {
+        width: 8.33%;
+    }
+    
+    .col-2 {
+        width: 16.66%;
+    }
+    
+    .col-3 {
+        width: 25%;
+    }
+    
+    .col-4 {
+        width: 33.33%;
+    }
+    
+    .col-5 {
+        width: 41.66%;
+    }
+    
+    .col-6 {
+        width: 50%;
+    }
+    
+    .col-7 {
+        width: 58.33%;
+    }
+    
+    .col-8 {
+        width: 66.66%;
+    }
+    
+    .col-9 {
+        width: 75%;
+    }
+    
+    .col-10 {
+        width: 83.33%;
+    }
+    
+    .col-11 {
+        width: 91.66%;
+    }
+    
+    .col-12 {
+        width: 100%;
+    }
+
+    .card-list > ul > li > .opsi > button > span {
+        display: block;
+    }
 }
 
 
@@ -1175,6 +1457,58 @@ h1, h2, h3, h4, h5, h6 {
     .topbar > .search > .kiri > input {
         display: block;
     }
+
+    .col-1 {
+        width: 8.33%;
+    }
+    
+    .col-2 {
+        width: 16.66%;
+    }
+    
+    .col-3 {
+        width: 25%;
+    }
+    
+    .col-4 {
+        width: 33.33%;
+    }
+    
+    .col-5 {
+        width: 41.66%;
+    }
+    
+    .col-6 {
+        width: 50%;
+    }
+    
+    .col-7 {
+        width: 58.33%;
+    }
+    
+    .col-8 {
+        width: 66.66%;
+    }
+    
+    .col-9 {
+        width: 75%;
+    }
+    
+    .col-10 {
+        width: 83.33%;
+    }
+    
+    .col-11 {
+        width: 91.66%;
+    }
+    
+    .col-12 {
+        width: 100%;
+    }
+
+    .card-list > ul > li > .opsi > button > span {
+        display: block;
+    }
 }
 
 
@@ -1226,6 +1560,58 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .topbar > .search > .kiri > input {
+        display: block;
+    }
+
+    .col-1 {
+        width: 8.33%;
+    }
+    
+    .col-2 {
+        width: 16.66%;
+    }
+    
+    .col-3 {
+        width: 25%;
+    }
+    
+    .col-4 {
+        width: 33.33%;
+    }
+    
+    .col-5 {
+        width: 41.66%;
+    }
+    
+    .col-6 {
+        width: 50%;
+    }
+    
+    .col-7 {
+        width: 58.33%;
+    }
+    
+    .col-8 {
+        width: 66.66%;
+    }
+    
+    .col-9 {
+        width: 75%;
+    }
+    
+    .col-10 {
+        width: 83.33%;
+    }
+    
+    .col-11 {
+        width: 91.66%;
+    }
+    
+    .col-12 {
+        width: 100%;
+    }
+
+    .card-list > ul > li > .opsi > button > span {
         display: block;
     }
 }
