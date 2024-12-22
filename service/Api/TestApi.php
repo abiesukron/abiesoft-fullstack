@@ -9,7 +9,7 @@ class TestApi extends Service
 {
     public function load($param)
     {
-        // $this->authentication();
+        $this->authentication();
         return match ($this->requestMethod()) {
             'post' => $this->keep(),
             'put' => $this->replace(),

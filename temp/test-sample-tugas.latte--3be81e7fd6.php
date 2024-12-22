@@ -68,13 +68,13 @@ final class Template_3be81e7fd6 extends Latte\Runtime\Template
                 </div>
                 <div class=\'card-list\'>
                     <ul>
-                        <li class=\'active\' onClick=\'loadList(this.dataset.list)\' data-list=\'empty\' data-switch=\'cardlist\'>
+                        <li class=\'active\' onClick=\'loadList(this.dataset.tablabel)\' data-tablabel=\'empty\' data-tab=\'cardlist\'>
                             <div class=\'info\'>
                                 <span>Empty</span>
                             </div>
                             <div class=\'opsi\'></div>
                         </li>
-                        <li onClick=\'loadList(this.dataset.list)\' data-list=\'surat\' data-switch=\'cardlist\'>
+                        <li onClick=\'loadList(this.dataset.tablabel)\' data-tablabel=\'surat\' data-tab=\'cardlist\'>
                             <div class=\'info\'>
                                 <span>Surat</span>
                             </div>
@@ -82,7 +82,7 @@ final class Template_3be81e7fd6 extends Latte\Runtime\Template
                                 <div class=\'badge danger\'>0</div>
                             </div>
                         </li>
-                        <li onClick=\'loadList(this.dataset.list)\' data-list=\'user\' data-switch=\'cardlist\'>
+                        <li onClick=\'loadList(this.dataset.tablabel)\' data-tablabel=\'user\' data-tab=\'cardlist\'>
                             <div class=\'info\'>
                                 <span>User</span>
                             </div>
@@ -100,7 +100,7 @@ final class Template_3be81e7fd6 extends Latte\Runtime\Template
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                         <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd"></path>
                     </svg>
-                    <input type=\'text\' placeholder=\'Ketik sesuatu untuk mencari\' data-keyboard=\'/\'>
+                    <input type=\'text\' placeholder=\'Ketik sesuatu untuk mencari (tekan ctrl + /)\' data-keyboard=\'191\'>
                 </div>
                 <div class=\'card-list\' id=\'listshow\'></div>
             </div>
@@ -118,12 +118,12 @@ final class Template_3be81e7fd6 extends Latte\Runtime\Template
 		echo '<script>
 function loadList(x) {
 
-    let dataswitch = document.querySelectorAll(\'li[data-switch]\');
-    if(dataswitch){
-        for(let i=0; i<dataswitch.length; i++){
-            dataswitch[i].setAttribute(\'class\',\'\');
-            if(dataswitch[i].dataset.list == x){
-                dataswitch[i].setAttribute(\'class\',\'active\');
+    let datatab = document.querySelectorAll(\'li[data-tab]\');
+    if(datatab){
+        for(let i=0; i<datatab.length; i++){
+            datatab[i].setAttribute(\'class\',\'\');
+            if(datatab[i].dataset.list == x){
+                datatab[i].setAttribute(\'class\',\'active\');
             }
         }
     }

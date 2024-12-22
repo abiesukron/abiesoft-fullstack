@@ -16,13 +16,7 @@ class TestController extends Controller
 
     public function add()
     {
-        return $this->view(
-            page: 'test/add',
-            model: 'admin',
-            data: [
-                'title' => 'Test',
-            ]
-        );
+        Lanjut::ke(Config::env('ADMIN_PANEL').'/test/read/tugas');
     }
 
     public function edit($parameter)

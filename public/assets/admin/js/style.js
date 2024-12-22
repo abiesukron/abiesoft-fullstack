@@ -125,3 +125,17 @@ if(menu){
         }
     }
 }
+
+
+document.addEventListener('keydown', function(event) {
+    const keycode = event.keyCode || event.which;
+    let inputKeyboard = document.querySelectorAll('input[data-keyboard]');
+    if(inputKeyboard){
+        for(let i=0; i<inputKeyboard.length; i++){
+            if(inputKeyboard[i].dataset.keyboard == keycode) {
+                console.log(keycode);
+                inputKeyboard[i].focus();
+            }
+        }
+    }
+});

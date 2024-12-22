@@ -182,7 +182,9 @@ final class Template_fdd2aa2d1c extends Latte\Runtime\Template
             
             <div>UI</div>
             <li>
-                <a href=\'javascript:void(0)\'>
+                <a href=\'';
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 162 */;
+		echo 'admin/v1/test/read/form\'>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                         <path d="M5.625 3.75a2.625 2.625 0 1 0 0 5.25h12.75a2.625 2.625 0 0 0 0-5.25H5.625ZM3.75 11.25a.75.75 0 0 0 0 1.5h16.5a.75.75 0 0 0 0-1.5H3.75ZM3 15.75a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75ZM3.75 18.75a.75.75 0 0 0 0 1.5h16.5a.75.75 0 0 0 0-1.5H3.75Z"></path>
                     </svg>
