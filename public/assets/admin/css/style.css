@@ -463,12 +463,26 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
 }
 
+.empty.card-list {
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .empty > .center {
     text-align: center;
 }
 
 .empty > .center > svg {
     fill: var(--abu3);
+    width: 100px;
+    margin: 10px auto;
+}
+
+.empty.card-list > .center > svg {
+    fill: var(--abu2);
     width: 100px;
     margin: 10px auto;
 }
@@ -481,10 +495,24 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
+.empty.card-list > .center > div.title {
+    display: block;
+    font-size: 18pt;
+    color: var(--abu2);
+    font-weight: 600;
+    text-align: center;
+}
+
 .empty > .center > div.des {
     margin-top: 10px;
     font-size: 12pt;
     color: var(--abu3);
+}
+
+.empty.card-list > .center > div.des {
+    margin-top: 10px;
+    font-size: 12pt;
+    color: var(--abu2);
 }
 
 .empty > .center > .area-button {
@@ -710,18 +738,21 @@ h1, h2, h3, h4, h5, h6 {
 
 .card-list > ul > li{
     position: relative;
-    padding: 20px 30px;
+    padding: 10px 30px;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 1px;
 }
 
 .card-list > ul.unset-cursor > li{
     cursor: unset;
+    padding: 20px 30px;
 }
 
-.card-list > ul > li:hover{
+.card-list > ul > li:hover,
+.card-list > ul > li.active{
     background-color: var(--light);
 }
 
@@ -761,6 +792,19 @@ h1, h2, h3, h4, h5, h6 {
 .card-list > ul > li > .info.icon small{
     display: block;
     font-size: 10pt;
+}
+
+.card-list > ul > li > .info.icon > .number{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-list > ul > li > .info.icon > .number > span{
+    font-weight: 600;
+    font-size: 18pt;
 }
 
 .card-list > ul > li > .info.icon > .cover{

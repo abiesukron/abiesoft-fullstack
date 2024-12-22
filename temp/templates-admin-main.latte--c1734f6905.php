@@ -68,8 +68,11 @@ final class Template_c1734f6905 extends Latte\Runtime\Template
     <script src="';
 		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 28 */;
 		echo 'assets/admin/js/form.js"></script>
+    <script src="';
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 29 */;
+		echo 'assets/admin/js/list.js"></script>
 ';
-		$this->renderBlock('js', get_defined_vars()) /* line 29 */;
+		$this->renderBlock('js', get_defined_vars()) /* line 30 */;
 		echo '</body>
 </html>';
 	}
@@ -93,7 +96,7 @@ final class Template_c1734f6905 extends Latte\Runtime\Template
 	}
 
 
-	/** {block js} on line 29 */
+	/** {block js} on line 30 */
 	public function blockJs(array $ʟ_args): void
 	{
 	}

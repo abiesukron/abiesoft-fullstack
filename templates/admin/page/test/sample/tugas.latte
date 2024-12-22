@@ -19,13 +19,13 @@
                 </div>
                 <div class='card-list'>
                     <ul>
-                        <li onClick='loadList(this.dataset.list)' data-list='empty'>
+                        <li class='active' onClick='loadList(this.dataset.list)' data-list='empty' data-switch='cardlist'>
                             <div class='info'>
                                 <span>Empty</span>
                             </div>
                             <div class='opsi'></div>
                         </li>
-                        <li onClick='loadList(this.dataset.list)' data-list='surat'>
+                        <li onClick='loadList(this.dataset.list)' data-list='surat' data-switch='cardlist'>
                             <div class='info'>
                                 <span>Surat</span>
                             </div>
@@ -33,7 +33,7 @@
                                 <div class='badge danger'>0</div>
                             </div>
                         </li>
-                        <li onClick='loadList(this.dataset.list)' data-list='user'>
+                        <li onClick='loadList(this.dataset.list)' data-list='user' data-switch='cardlist'>
                             <div class='info'>
                                 <span>User</span>
                             </div>
@@ -73,6 +73,17 @@
 {block js}
 <script>
 function loadList(x) {
+
+    let dataswitch = document.querySelectorAll('li[data-switch]');
+    if(dataswitch){
+        for(let i=0; i<dataswitch.length; i++){
+            dataswitch[i].setAttribute('class','');
+            if(dataswitch[i].dataset.list == x){
+                dataswitch[i].setAttribute('class','active');
+            }
+        }
+    }
+
     let showBox = el('#listshow');
     showBox.innerHTML = `
         <div class='p-20'><div class='loader'></div></div>
@@ -80,74 +91,39 @@ function loadList(x) {
     setTimeout(()=>{
         switch(x){
             case 'surat':
-                loadSurat(showBox);
+                toCardList({
+                    mode: 'number',
+                    url: 'api/test/tugas',
+                    target: 'listshow',
+                    nama: 'surat'
+                })
             break;
             case 'user':
-                loadUser(showBox);
+                toCardList({
+                    mode: 'image',
+                    url: 'api/test/tugas',
+                    target: 'listshow',
+                    nama: 'user'
+                })
             break;
             default:
-                loadEmpty(showBox);
+                toCardList({
+                    mode: 'empty',
+                    url: 'api/test/tugas',
+                    target: 'listshow',
+                    nama: 'user'
+                })
             break;
         }
     },100);
 }
 
-loadList('empty');
+toCardList({
+    mode: 'empty',
+    url: 'api/test/tugas',
+    target: 'listshow',
+    nama: 'user'
+});
 
-function loadEmpty(x) {
-    x.innerHTML = 'Empty';
-}
-
-function loadSurat(x) {
-    x.innerHTML = 'Surat';
-}
-
-function loadUser(x) {
-
-    fetch(Baseurl + 'api/test/tugas', {
-        method: 'GET',
-        headers: HEADER
-    }).then(response => response.json()).then(res => {
-        let konten = "";
-        for(let i=0; i<res.data.length; i++){
-            let photo = Baseurl + "assets/admin/images/default.png";
-            if(res.data[i].photo != ''){
-                photo = res.data[i].photo;
-            }
-            konten += `
-                <li>
-                    <div class='info icon'>
-                        <div class='cover'>
-                            <img src='`+photo+`'>
-                        </div>
-                        <div>
-                            <span>`+res.data[i].nama+`</span>
-                            <small>`+res.data[i].email+`</small>
-                        </div>
-                    </div>
-                    <div class='opsi'>
-                        <button>
-                            <span>Lihat</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                                <path fill-rule="evenodd" d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                    </div>
-                </li>
-            `;  
-        }
-        x.innerHTML = `
-            <ul class='unset-cursor'>
-                `+konten+`
-            </ul>
-        `;
-    }).catch(error => {
-        if(consoleResult){
-            console.log(error);
-        }
-        return false;
-    });
-    
-}
 </script>
 {/block}

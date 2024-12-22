@@ -104,7 +104,7 @@ class TestApi extends Service
     
     protected function emptyData()
     {
-        self::result('');
+        self::result([]);
     }
 
     protected function getWithoutParam()
