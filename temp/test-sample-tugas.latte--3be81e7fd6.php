@@ -122,7 +122,7 @@ function loadList(x) {
     if(datatab){
         for(let i=0; i<datatab.length; i++){
             datatab[i].setAttribute(\'class\',\'\');
-            if(datatab[i].dataset.list == x){
+            if(datatab[i].dataset.tablabel == x){
                 datatab[i].setAttribute(\'class\',\'active\');
             }
         }
@@ -132,6 +132,7 @@ function loadList(x) {
     showBox.innerHTML = `
         <div class=\'p-20\'><div class=\'loader\'></div></div>
     `;
+
     setTimeout(()=>{
         switch(x){
             case \'surat\':
@@ -160,6 +161,7 @@ function loadList(x) {
             break;
         }
     },100);
+
 }
 
 toCardList({
