@@ -18,7 +18,7 @@ final class Template_c1734f6905 extends Latte\Runtime\Template
 		unset($ʟ_args);
 
 		echo '<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-thema=\'dark\'>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

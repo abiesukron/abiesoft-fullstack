@@ -598,7 +598,7 @@ if(tipeelement){
                                     </select>
                                 </div>
                                 <div>
-                                    <select id='select-bulan-`+tipeelement[i].id+`' data-klik='`+tipeelement[i].id+`' onChange='setBln([this.value,this.dataset.id])' data-id='`+tipeelement[i].id+`' data-tipe='select' class='form-control' style='width: 100%; font-size: 11pt; padding: 8px; border-radius: 0; text-align: center; background: none; border-top: 1px solid var(--abu); border-bottom: 1px solid var(--abu);' id='bln'>
+                                    <select id='select-bulan-`+tipeelement[i].id+`' data-klik='`+tipeelement[i].id+`' onChange='setBln([this.value,this.dataset.id])' data-id='`+tipeelement[i].id+`' data-tipe='select' class='form-control' style='width: 100%; font-size: 11pt; padding: 8px; border-radius: 0; text-align: center; background: none;' id='bln'>
                                         <option data-klik='`+tipeelement[i].id+`' value='`+placeholder.split("/")[1]+`'>`+bulanTxt(placeholder.split("/")[1])+`</option>
                                         `+bl+`
                                     </select>

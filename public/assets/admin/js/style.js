@@ -15,10 +15,21 @@ function getMeta(metaName) {
 }
 
 const apikey = getMeta("x-Apikey");
-let Baseurl = getMeta("x-Baseurl");
-let Prefix = getMeta("x-Prefix");
+const Baseurl = getMeta("x-Baseurl");
+const Prefix = getMeta("x-Prefix");
+const body = el('body');
+const iconmode = el('#iconmode');
 
 let popup = [];
+
+const currentTheme = getCookie('ABIESOFT_THEME') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark-mode' : 'light-mode');
+body.classList.add(currentTheme);
+
+if(currentTheme == 'dark-mode'){
+    iconmode.innerHTML = `<svg data-toggle='mode' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6"><path data-toggle='mode' d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" /></svg>`;
+}else{
+    iconmode.innerHTML = `<svg data-toggle='mode' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6"><path data-toggle='mode'fill-rule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z" clip-rule="evenodd" /></svg>`;
+}
 
 window.addEventListener("click", (e)=>{
     Object.entries(popup).forEach(([key, value]) => {
@@ -33,7 +44,6 @@ window.addEventListener("click", (e)=>{
     let page = el('.page');
     let profile = el('#profile');
     let notifikasi = el('#notifikasi');
-    let pesan = el('#pesan');
 
     if(e.target.dataset.toggle){
 
@@ -59,7 +69,6 @@ window.addEventListener("click", (e)=>{
             }else{
                 profile.classList.add('show');
                 notifikasi.classList.remove('show');
-                pesan.classList.remove('show');
             }
         }
 
@@ -70,25 +79,26 @@ window.addEventListener("click", (e)=>{
             }else{
                 notifikasi.classList.add('show');
                 profile.classList.remove('show');
-                pesan.classList.remove('show');
             }
         }
 
-        // Pesan Toggle
-        if(e.target.dataset.toggle == "pesan"){
-            if(pesan.classList.contains('show')){
-                pesan.classList.remove('show');
+        // Mode dark light Toggle
+        if(e.target.dataset.toggle == "mode"){
+            const newTheme = document.body.classList.contains('dark-mode') ? 'light-mode' : 'dark-mode';
+            body.classList.remove('dark-mode', 'light-mode');
+            body.classList.add(newTheme);
+            setCookie('ABIESOFT_THEME', newTheme, 7); 
+            if(iconmode.innerHTML.split("").length == 424){
+                iconmode.innerHTML = `<svg data-toggle='mode' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6"><path data-toggle='mode' d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" /></svg>`;
             }else{
-                pesan.classList.add('show');
-                profile.classList.remove('show');
-                notifikasi.classList.remove('show');
+                iconmode.innerHTML = `<svg data-toggle='mode' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6"><path data-toggle='mode'fill-rule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z" clip-rule="evenodd" /></svg>`;
             }
+
         }
         
     }else{
 
-        let bodyWidth = document.body.clientWidth;
-        if(bodyWidth < 768){
+        if(body.clientWidth < 768){
             sidebar.classList.remove('show');
             topbar.classList.remove('show');
             page.classList.remove('show');
@@ -96,10 +106,32 @@ window.addEventListener("click", (e)=>{
 
         profile.classList.remove('show');
         notifikasi.classList.remove('show');
-        pesan.classList.remove('show');
 
     }
 });
+
+
+function setCookie(name, value, days) {
+    const d = new Date();
+    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + d.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1, c.length);
+        }
+        if (c.indexOf(nameEQ) === 0) {
+            return c.substring(nameEQ.length, c.length);
+        }
+    }
+    return null;
+}
 
 
 
@@ -133,7 +165,6 @@ document.addEventListener('keydown', function(event) {
     if(inputKeyboard){
         for(let i=0; i<inputKeyboard.length; i++){
             if(inputKeyboard[i].dataset.keyboard == keycode) {
-                console.log(keycode);
                 inputKeyboard[i].focus();
             }
         }

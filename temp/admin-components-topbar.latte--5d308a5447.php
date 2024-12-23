@@ -28,12 +28,7 @@ final class Template_5d308a5447 extends Latte\Runtime\Template
             <input placeholder=\'Cari..\' id=\'cari\'>
         </div>
         <div class=\'kanan\'>
-            <button data-toggle=\'pesan\'>
-                <svg data-toggle=\'pesan\' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                    <path data-toggle=\'pesan\' d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z"></path>
-                    <path data-toggle=\'pesan\' d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z"></path>
-                </svg>
-            </button>
+            <button data-toggle=\'mode\' id=\'iconmode\'><svg data-toggle=\'mode\' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6"><path data-toggle=\'mode\' fill-rule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z" clip-rule="evenodd"></path></svg></button>
             <button data-toggle=\'notifikasi\'>
                 <svg data-toggle=\'notifikasi\' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                     <path data-toggle=\'notifikasi\' fill-rule="evenodd" d="M5.25 9a6.75 6.75 0 0 1 13.5 0v.75c0 2.123.8 4.057 2.118 5.52a.75.75 0 0 1-.297 1.206c-1.544.57-3.16.99-4.831 1.243a3.75 3.75 0 1 1-7.48 0 24.585 24.585 0 0 1-4.831-1.244.75.75 0 0 1-.298-1.205A8.217 8.217 0 0 0 5.25 9.75V9Zm4.502 8.9a2.25 2.25 0 1 0 4.496 0 25.057 25.057 0 0 1-4.496 0Z" clip-rule="evenodd"></path>
@@ -41,7 +36,7 @@ final class Template_5d308a5447 extends Latte\Runtime\Template
             </button>
             <div class=\'photo\' data-toggle=\'profile\'>
                 <img src=\'';
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 28 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 23 */;
 		echo 'assets/admin/images/default.png\' data-toggle=\'profile\'>
             </div>
 
@@ -49,7 +44,7 @@ final class Template_5d308a5447 extends Latte\Runtime\Template
                 <div class=\'area\'>
                     <div class=\'cover\'>
                         <img src=\'';
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 34 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 29 */;
 		echo 'assets/admin/images/default.png\'>
                     </div>
                     <div class=\'info\'>
@@ -85,7 +80,7 @@ final class Template_5d308a5447 extends Latte\Runtime\Template
                             <li>
                                 <div class=\'cover\'>
                                     <img src=\'';
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 68 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 63 */;
 		echo 'assets/admin/images/default.png\'>
                                 </div>
                                 <div class=\'info\'>
@@ -96,7 +91,7 @@ final class Template_5d308a5447 extends Latte\Runtime\Template
                             <li>
                                 <div class=\'cover\'>
                                     <img src=\'';
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 77 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 72 */;
 		echo 'assets/admin/images/default.png\'>
                                 </div>
                                 <div class=\'info\'>
@@ -107,7 +102,7 @@ final class Template_5d308a5447 extends Latte\Runtime\Template
                             <li>
                                 <div class=\'cover\'>
                                     <img src=\'';
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 86 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 81 */;
 		echo 'assets/admin/images/default.png\'>
                                 </div>
                                 <div class=\'info\'>
@@ -118,7 +113,7 @@ final class Template_5d308a5447 extends Latte\Runtime\Template
                             <li>
                                 <div class=\'cover\'>
                                     <img src=\'';
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 95 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 90 */;
 		echo 'assets/admin/images/default.png\'>
                                 </div>
                                 <div class=\'info\'>
@@ -129,7 +124,7 @@ final class Template_5d308a5447 extends Latte\Runtime\Template
                             <li>
                                 <div class=\'cover\'>
                                     <img src=\'';
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 104 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 99 */;
 		echo 'assets/admin/images/default.png\'>
                                 </div>
                                 <div class=\'info\'>
@@ -161,7 +156,7 @@ final class Template_5d308a5447 extends Latte\Runtime\Template
                             <li>
                                 <div class=\'cover\'>
                                     <img src=\'';
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 134 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 129 */;
 		echo 'assets/admin/images/default.png\'>
                                 </div>
                                 <div class=\'info\'>
@@ -172,7 +167,7 @@ final class Template_5d308a5447 extends Latte\Runtime\Template
                             <li>
                                 <div class=\'cover\'>
                                     <img src=\'';
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 143 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 138 */;
 		echo 'assets/admin/images/default.png\'>
                                 </div>
                                 <div class=\'info\'>
@@ -183,7 +178,7 @@ final class Template_5d308a5447 extends Latte\Runtime\Template
                             <li>
                                 <div class=\'cover\'>
                                     <img src=\'';
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 152 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 147 */;
 		echo 'assets/admin/images/default.png\'>
                                 </div>
                                 <div class=\'info\'>
@@ -194,7 +189,7 @@ final class Template_5d308a5447 extends Latte\Runtime\Template
                             <li>
                                 <div class=\'cover\'>
                                     <img src=\'';
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 161 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 156 */;
 		echo 'assets/admin/images/default.png\'>
                                 </div>
                                 <div class=\'info\'>
@@ -205,7 +200,7 @@ final class Template_5d308a5447 extends Latte\Runtime\Template
                             <li>
                                 <div class=\'cover\'>
                                     <img src=\'';
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 170 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 165 */;
 		echo 'assets/admin/images/default.png\'>
                                 </div>
                                 <div class=\'info\'>

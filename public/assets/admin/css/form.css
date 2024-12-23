@@ -13,8 +13,16 @@
     border: 1px solid var(--danger);
 }
 
+body.dark-mode .form-grup.form-error .form-control {
+    border: 1px solid var(--dark-danger);
+}
+
 .form-grup.form-error svg {
     stroke: var(--danger);
+}
+
+body.dark-mode .form-grup.form-error svg {
+    stroke: var(--dark-danger);
 }
 
 .form-grup.form-error ::placeholder {
@@ -25,17 +33,34 @@
     color: var(--danger);
 }
 
+body.dark-mode .form-grup.form-error label {
+    color: var(--dark-danger);
+}
+
 .form-grup.form-error .form-control:hover,
 .form-grup.form-error .form-control:focus {
     border: 1px solid var(--danger);
+}
+
+body.dark-mode .form-grup.form-error .form-control:hover,
+body.dark-mode .form-grup.form-error .form-control:focus {
+    border: 1px solid var(--dark-danger);
 }
 
 .form-grup.form-error .form-control {
     border: 1px solid var(--danger);
 }
 
+body.dark-mode .form-grup.form-error .form-control {
+    border: 1px solid var(--dark-danger);
+}
+
 .form-grup.form-success svg {
     stroke: var(--success);
+}
+
+body.dark-mode .form-grup.form-success svg {
+    stroke: var(--dark-success);
 }
 
 .form-grup.form-success ::placeholder {
@@ -46,13 +71,26 @@
     color: var(--success);
 }
 
+body.dark-mode .form-grup.form-success label {
+    color: var(--dark-success);
+}
+
 .form-grup.form-success .form-control:hover,
 .form-grup.form-success .form-control:focus {
     border: 1px solid var(--success);
 }
 
+body.dark-mode .form-grup.form-success .form-control:hover,
+body.dark-mode .form-grup.form-success .form-control:focus {
+    border: 1px solid var(--dark-success);
+}
+
 .form-grup.form-success .form-control {
     border: 1px solid var(--success);
+}
+
+body.dark-mode .form-grup.form-success .form-control {
+    border: 1px solid var(--dark-success);
 }
 
 
@@ -70,12 +108,20 @@
     border: 1px solid var(--abu);
 }
 
+body.dark-mode .form-grup .form-control{
+    border: 1px solid var(--dark-abu3);
+}
+
 .form-grup .form-control:hover{
     border: 1px solid var(--abu2);
 }
 
 .form-grup .form-control:focus{
     border: 1px solid var(--primary-hover);
+}
+
+body.dark-mode .form-grup .form-control:focus{
+    border: 1px solid var(--dark-primary-hover);
 }
 
 .form-grup .form-control.editor {
@@ -89,6 +135,10 @@
     color: var(--putih);
 }
 
+body.dark-mode .form-grup .form-control.editor button{
+    color: var(--dark-putih);
+}
+
 .form-single-button > button {
     width: 100%;
     background-color: var(--primary);
@@ -98,8 +148,20 @@
     border-radius: 8px;
 }
 
+body.dark-mode .form-single-button > button {
+    background-color: var(--dark-primary);
+    color: var(--dark-putih);
+}
+
 .form-single-button > button:hover {
     background-color: var(--primary-hover);
+    box-shadow: 5px 10px 10px -12px rgba(27,132,255,0.75);
+    -webkit-box-shadow: 5px 10px 10px -12px rgba(27,132,255,0.75);
+    -moz-box-shadow: 5px 10px 10px -12px rgba(27,132,255,0.75);
+}
+
+body.dark-mode .form-single-button > button:hover {
+    background-color: var(--dark-primary-hover);
     box-shadow: 5px 10px 10px -12px rgba(27,132,255,0.75);
     -webkit-box-shadow: 5px 10px 10px -12px rgba(27,132,255,0.75);
     -moz-box-shadow: 5px 10px 10px -12px rgba(27,132,255,0.75);
@@ -111,6 +173,25 @@ label,
 input[type="button"],
 input[type="submit"] {
     cursor: pointer;
+}
+
+input,
+select,
+textarea {
+    background-color: var(--putih);
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+    background-color: var(--dark-hitam);
+    color: var(--dark-putih);
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode select::placeholder,
+body.dark-mode textarea::placeholder {
+    color: var(--dark-light);
 }
 
 
@@ -145,7 +226,6 @@ input[type="submit"] {
 .form-grup .input-opsi {
     width: 100%;
     display: block;
-    background-color: rebeccapurple;
     position: relative;
 }
 
@@ -215,6 +295,11 @@ input[data-padding='justify-icon'].form-control {
     padding: 10px;
 }
 
+body.dark-mode .calender {
+    background-color: var(--dark-hitam-hover);
+    border: 1px solid var(--dark-hitam);
+}
+
 .calender > div:nth-child(1) {
     width: 150px;
     height: 100px;
@@ -229,12 +314,20 @@ input[data-padding='justify-icon'].form-control {
     background-color: var(--light);
 }
 
+body.dark-mode .calender > div:nth-child(1) .form-control:hover {
+    background-color: var(--dark-light);
+}
+
 .calender > div:nth-child(2) {
     width: 100px;
     height: 100px;
     background-color: var(--light);
     border-radius: 4px;
     overflow: hidden;
+}
+
+body.dark-mode .calender > div:nth-child(2) {
+    background-color: var(--dark-hitam);
 }
 
 .calender > div:nth-child(2) > div:nth-child(1) {
@@ -246,6 +339,11 @@ input[data-padding='justify-icon'].form-control {
     font-size: 9pt;
     font-weight: 500;
     text-transform: uppercase;
+}
+
+body.dark-mode .calender > div:nth-child(2) > div:nth-child(1) {
+    background-color: var(--dark-abu2);
+    color: var(--dark-hitam);
 }
 
 .calender > div:nth-child(2) > div:nth-child(2) {
@@ -269,6 +367,11 @@ input[data-padding='justify-icon'].form-control {
     font-size: 9pt;
     font-weight: 500;
     text-transform: uppercase;
+}
+
+body.dark-mode .calender > div:nth-child(2) > div:nth-child(3) {
+    background-color: var(--dark-abu2);
+    color: var(--dark-hitam);
 }
 
 
