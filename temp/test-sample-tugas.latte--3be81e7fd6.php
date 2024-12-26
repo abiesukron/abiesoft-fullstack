@@ -52,13 +52,6 @@ final class Template_3be81e7fd6 extends Latte\Runtime\Template
 
 		echo '<div class=\'container\'>
     <div class=\'row\'>
-        <div class=\'col-12\'>
-            <div class=\'card\'>
-                <div class=\'card-wall\'>
-                    <div class=\'display-5\'>Tugas</div>
-                </div>
-            </div>
-        </div>
         <div class=\'col-3\'>
             <div class=\'card\'>
                 <div class=\'card-header\'>
@@ -96,23 +89,19 @@ final class Template_3be81e7fd6 extends Latte\Runtime\Template
         </div>
         <div class=\'col-9\'>
             <div class=\'card\'>
-                <div class=\'card-header-search\'>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                        <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd"></path>
-                    </svg>
-                    <input type=\'text\' placeholder=\'Ketik sesuatu untuk mencari (tekan ctrl + /)\' data-keyboard=\'191\'>
-                </div>
+                <div id=\'searchshow\'></div>
                 <div class=\'card-list\' id=\'listshow\'></div>
+                <div id=\'loadmoreshow\'></div>
             </div>
         </div>
     </div>
 </div>
 ';
-		$this->renderBlock('js', get_defined_vars()) /* line 61 */;
+		$this->renderBlock('js', get_defined_vars()) /* line 55 */;
 	}
 
 
-	/** {block js} on line 61 */
+	/** {block js} on line 55 */
 	public function blockJs(array $ʟ_args): void
 	{
 		echo '<script>
@@ -148,7 +137,8 @@ function loadList(x) {
                     mode: \'image\',
                     url: \'api/test/user\',
                     target: \'listshow\',
-                    nama: \'user\'
+                    nama: \'user\',
+                    tampilkan: 3
                 })
             break;
             default:

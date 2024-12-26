@@ -4,6 +4,7 @@
     --primary: #1B84FF;
     --primary-hover: #0f6fdd;
     --primary-transparent: rgba(27, 132, 255,.14);
+    --primary-transparent-hover: rgba(27, 132, 255,.1);
     --aksen-1: #335e71;
     --aksen-2: #deba4c;
     --abu: #e2e2e2;
@@ -24,8 +25,8 @@
     --dark-primary: #0d3e75;
     --dark-primary-hover: #08305f;
     --dark-primary-transparent: rgba(27, 132, 255,.14);
-    --dark-aksen-1: #264653;
-    --dark-aksen-2: #7a6628;
+    --dark-aksen-1: #3a687a;
+    --dark-aksen-2: #9e8436;
     --dark-abu: #abd3e7;
     --dark-abu2: #4c849c;
     --dark-abu3: #3b687c;
@@ -33,7 +34,7 @@
     --dark-hitam: #11222b;
     --dark-hitam-hover: #0d1c24;
     --dark-font: #67abc9;
-    --dark-putih: #487d94;
+    --dark-putih: #a7cedf;
     --dark-danger: #a30d0d;
     --dark-danger-transparent: rgba(230, 16, 16,.25);
     --dark-success: #015346;
@@ -324,7 +325,8 @@ body.dark-mode .sidebar > .sidebar-menu > ul > li.active > a > svg{
     transition: height .5s;
 }
 
-.sidebar > .sidebar-menu > ul > li > ul.show {
+.sidebar > .sidebar-menu > ul > li > ul.show,
+body.dark-mode .sidebar > .sidebar-menu > ul > li > ul.show {
     height: max-content;
     overflow: hidden;
     transition: height .5s;
@@ -923,17 +925,6 @@ body.dark-mode .card {
     border-radius:8px;
 }
 
-.card-wall {
-    position: relative;
-    background-color: var(--primary-transparent);
-    min-height: 150px;
-    border-radius:8px;
-    padding: 0 30px;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-}
-
 .card-header {
     padding: 20px 30px;
     display: flex;
@@ -1140,6 +1131,43 @@ body.dark-mode .card-list > ul > li > .opsi button{
 
 .card-list > ul > li > .opsi button svg {
     width: 18px;
+}
+
+
+.card-list > ul.for-search > li{
+    display: none;
+}
+
+.card-list > ul.for-search > li.show{
+    display: block;
+}
+
+.card-footer {
+    padding: 20px 30px;
+}
+
+.card-footer > .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-footer button {
+    padding: 8px 15px;
+    background-color: var(--primary-transparent);
+    color: var(--primary);
+    font-weight: 500;
+    border-radius: 4px;
+}
+
+body.dark-mode .card-footer button {
+    color: var(--dark-font);
+}
+
+.card-footer button:hover {
+    padding: 8px 15px;
+    background-color: var(--primary-transparent-hover);
+    color: var(--primary);
 }
 
 
@@ -1446,6 +1474,32 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
 
 
 
+/*
+    Shimmer
+*/
+
+.shimmer {
+    color: grey;
+    display: inline-block;
+    -webkit-mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/300% 100%;
+    background-repeat: no-repeat;
+    animation: shimmer 2.5s infinite;
+    font-size: 50px;
+    width: 100%;
+}
+
+@keyframes shimmer {
+    100% {
+        -webkit-mask-position: left
+    }
+}
+
+
+
+
+
+
+
 
 
 
@@ -1461,12 +1515,15 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
 */
 
 @media only screen and (max-width: 600px) {
-    .sidebar {
+
+    .sidebar,
+    body.dark-mode .sidebar{
         left: -250px;
         transition: left .5s;
     }
 
-    .sidebar.show {
+    .sidebar.show,
+    body.dark-mode .sidebar.show {
         left: 0;
         transition: left .5s;
     }
@@ -1476,7 +1533,8 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
         transition: left .5s;
     }
 
-    .topbar.show {
+    .topbar.show,
+    body.dark-mode .topbar.show {
         left: 250px;
         transition: left .5s;
     }
@@ -1492,13 +1550,14 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
         transition: margin-left .5s;
     }
 
-    .page.show {
+    .page.show,
+    body.dark-mode .page.show {
         width: 500px;
         margin-left: 250px;
         transition: margin-left .5s;
     }
 
-    .topbar > .search > .kanan > button {
+    .topbar > .search > .kanan > button:nth-child(2) {
         display: none;
     }
 
@@ -1510,7 +1569,8 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
         display: block;
     }
 
-    .topbar.show > .search > .kanan > .photo {
+    .topbar.show > .search > .kanan > .photo
+    body.dark-mode .topbar.show > .search > .kanan > .photo {
         display: none;
     }
 
@@ -1518,7 +1578,8 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
         display: block;
     }
 
-    .topbar.show > .search > .kiri > svg {
+    .topbar.show > .search > .kiri > svg,
+    body.dark-mode .topbar.show > .search > .kiri > svg {
         display: none;
     }
     
@@ -1545,12 +1606,14 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
 
 
 @media only screen and (min-width: 600px) {
-    .sidebar {
+    .sidebar,
+    body.dark-mode .sidebar {
         left: -250px;
         transition: left .5s;
     }
 
-    .sidebar.show {
+    .sidebar.show,
+    body.dark-mode .sidebar.show {
         left: 0;
         transition: left .5s;
     }
@@ -1561,7 +1624,8 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
         transition: left .5s;
     }
 
-    .topbar.show {
+    .topbar.show,
+    body.dark-mode .topbar.show {
         left: 250px;
         overflow: hidden;
         transition: left .5s;
@@ -1577,12 +1641,13 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
         transition: margin-left .5s;
     }
 
-    .page.show {
+    .page.show,
+    body.dark-mode .page.show {
         margin-left: 250px;
         transition: margin-left .5s;
     }
 
-    .topbar > .search > .kanan > button {
+    .topbar > .search > .kanan > button:last-child {
         display: none;
     }
 
@@ -1613,12 +1678,14 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
 
 
 @media only screen and (min-width: 768px) {
-    .sidebar {
+    .sidebar,
+    body.dark-mode .sidebar {
         left: 0;
         transition: left .5s;
     }
 
-    .sidebar.show {
+    .sidebar.show,
+    body.dark-mode .sidebar.show {
         left:-250px;
         transition: left .5s;
     }
@@ -1629,7 +1696,8 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
         transition: left .5s;
     }
 
-    .topbar.show {
+    .topbar.show,
+    body.dark-mode .topbar.show {
         left: 0;
         overflow: unset;
         transition: left .5s;
@@ -1640,7 +1708,8 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
         margin: 0 auto;
     }
 
-    .container.show {
+    .container.show,
+    body.dark-mode .container.show {
         max-width: 600px;
         margin: 0 auto;
     }
@@ -1650,7 +1719,8 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
         transition: margin-left .5s;
     }
 
-    .page.show {
+    .page.show,
+    body.dark-mode .page.show {
         margin-left: 0;
         transition: margin-left .5s;
     }
@@ -1686,12 +1756,14 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
 
 
 @media only screen and (min-width: 992px) {
-    .sidebar {
+    .sidebar,
+    body.dark-mode .sidebar {
         left: 0;
         transition: left .5s;
     }
 
-    .sidebar.show {
+    .sidebar.show,
+    body.dark-mode .sidebar.show {
         left: -250px;
         transition: left .5s;
     }
@@ -1702,7 +1774,8 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
         transition: left .5s;
     }
 
-    .topbar.show {
+    .topbar.show,
+    body.dark-mode .topbar.show {
         left: 0;
         overflow: unset;
         transition: left .5s;
@@ -1713,7 +1786,8 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
         margin: 0 auto;
     }
 
-    .container.show {
+    .container.show,
+    body.dark-mode .container.show {
         max-width: 800px;
         margin: 0 auto;
     }
@@ -1723,7 +1797,8 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
         transition: margin-left .5s;
     }
 
-    .page.show {
+    .page.show,
+    body.dark-mode .page.show {
         margin-left: 0;
         transition: margin-left .5s;
     }
@@ -1792,12 +1867,14 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
 
 
 @media only screen and (min-width: 1200px) {
-    .sidebar {
+    .sidebar,
+    body.dark-mode .sidebar {
         left: 0;
         transition: left .5s;
     }
 
-    .sidebar.show {
+    .sidebar.show,
+    body.dark-mode .sidebar.show {
         left: -250px;
         transition: left .5s;
     }
@@ -1808,7 +1885,8 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
         transition: left .5s;
     }
 
-    .topbar.show {
+    .topbar.show,
+    body.dark-mode .topbar.show{
         left: 0;
         overflow: unset;
         transition: left .5s;
@@ -1819,7 +1897,8 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
         margin: 0 auto;
     }
 
-    .container.show {
+    .container.show,
+    body.dark-mode .container.show {
         max-width: 1100px;
         margin: 0 auto;
     }
@@ -1829,7 +1908,8 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
         transition: margin-left .5s;
     }
 
-    .page.show {
+    .page.show,
+    body.dark-mode .page.show {
         margin-left: 0;
         transition: margin-left .5s;
     }
@@ -1897,12 +1977,14 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
 
 
 @media only screen and (min-width: 1600px) {
-    .sidebar {
+    .sidebar,
+    body.dark-mode .sidebar {
         left: 0;
         transition: left .5s;
     }
 
-    .sidebar.show {
+    .sidebar.show,
+    body.dark-mode .sidebar.show {
         left: -250px;
         transition: left .5s;
     }
@@ -1913,7 +1995,8 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
         transition: left .5s;
     }
 
-    .topbar.show {
+    .topbar.show,
+    body.dark-mode .topbar.show {
         left: 0;
         overflow: unset;
         transition: left .5s;
@@ -1924,7 +2007,8 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
         margin: 0 auto;
     }
 
-    .container.show {
+    .container.show,
+    body.dark-mode .container.show {
         max-width: 1500px;
         margin: 0 auto;
     }
@@ -1934,7 +2018,8 @@ body.dark-mode .popup-standar > .area > .footer > .mini-button {
         transition: margin-left .5s;
     }
 
-    .page.show {
+    .page.show,
+    body.dark-mode .page.show {
         margin-left: 0;
         transition: margin-left .5s;
     }

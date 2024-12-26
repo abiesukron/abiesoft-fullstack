@@ -1,15 +1,29 @@
 let dataList = [];
+let defaultTampilkan = [];
+let jumlahData = [];
+let keywordSearch = [];
+let tampilkan = 6;
+let loadmore = el('#loadmoreshow');
+let search = el('#searchshow');
+if(loadmore){
+    loadmore.innerHTML = ``;
+    search.innerHTML = ``;
+}
 
 function toCardList(x){
     
     let namaList = x.nama;
     let url = x.url;
-
+    if(x.tampilkan){
+        tampilkan = x.tampilkan;
+    }
+    defaultTampilkan[namaList] = tampilkan;
+    keywordSearch[namaList] = "";
     fetch(Baseurl + url, {
         method: 'GET',
         headers: HEADER
     }).then(response => response.json()).then(res => {
-
+        jumlahData[namaList] = res.data.length;
         if(dataList[namaList] != res.data){
             dataList[namaList] = res.data;
             fetchListToTarget(x);
@@ -26,6 +40,11 @@ function toCardList(x){
 
 function fetchListToTarget(x) {
     let mode = x.mode;
+
+    if(loadmore){
+        loadmore.innerHTML = ``;
+        search.innerHTML = ``;
+    }
 
     switch(mode){
         case 'surat':
@@ -76,95 +95,12 @@ function fetchListToTargetWithEmpty(x) {
 }
 
 function fetchListToTargetWithSurat(x) {
-    let targetID = x.target;
-    let namaList = x.nama;
-
-    let showBox = el('#'+targetID);
-    showBox.innerHTML = `
-        <div class='p-20'><div class='loader'></div></div>
-    `;
     
-    let data = dataList[namaList];
 
-    let konten = "";
-    for(let i=0; i<data.length; i++){
-        konten += `
-            <li>
-                <div class='info icon'>
-                    <div class='number'>
-                        <span>`+(Number(i)+1)+`</span>
-                    </div>
-                    <div>
-                        <span>`+data[i].noreg+`</span>
-                        <div>`+data[i].nama+`</div>
-                        <div>`+data[i].perihal+`</div>
-                        <small>`+data[i].nosurat+` | `+data[i].tglsurat+`</small>
-                    </div>
-                </div>
-                <div class='opsi'>
-                    <div>
-                        <div>Model</div>
-                        <div>Penanganan</div>
-                        <div>Terakhir</div>
-                        <div class='display-4'>`+data[i].penanganan+`</div>
-                        <button>
-                            <span>Detail</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                                <path fill-rule="evenodd" d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </li>
-        `;  
-    }
-    showBox.innerHTML = `
-        <ul class='unset-cursor'>
-            `+konten+`
-        </ul>
-    `;
 }
 
 function fetchListToTargetWithNumber(x) {
-    let targetID = x.target;
-    let namaList = x.nama;
-
-    let showBox = el('#'+targetID);
-    showBox.innerHTML = `
-        <div class='p-20'><div class='loader'></div></div>
-    `;
     
-    let data = dataList[namaList];
-
-    let konten = "";
-    for(let i=0; i<data.length; i++){
-        konten += `
-            <li>
-                <div class='info icon'>
-                    <div class='number'>
-                        <span>`+(Number(i)+1)+`</span>
-                    </div>
-                    <div>
-                        <span>`+data[i].nama+`</span>
-                        <small>`+data[i].email+`</small>
-                    </div>
-                </div>
-                <div class='opsi'>
-                    <button>
-                        <span>Lihat</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                            <path fill-rule="evenodd" d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                </div>
-            </li>
-        `;  
-    }
-    showBox.innerHTML = `
-        <ul class='unset-cursor'>
-            `+konten+`
-        </ul>
-    `;
 }
 
 function fetchListToTargetWithImage(x) {
@@ -172,42 +108,124 @@ function fetchListToTargetWithImage(x) {
     let namaList = x.nama;
 
     let showBox = el('#'+targetID);
+
     showBox.innerHTML = `
         <div class='p-20'><div class='loader'></div></div>
     `;
-
-    let data = dataList[namaList];
+    
+    let jumlah = jumlahData[namaList];
     let konten = "";
-    for(let i=0; i<data.length; i++){
-        let photo = Baseurl + "assets/admin/images/default.png";
-        if(data[i].photo != ''){
-            photo = data[i].photo;
+    let tampilkanmulaidari = 0;
+
+    function loadKonten(){
+
+        if(keywordSearch[namaList].split("").length == 0){
+            if(tampilkanmulaidari > 0){
+                loadmore.innerHTML = `<div class='center p-20'><div class='loader'></div></div>`;
+            }else{
+                loadmore.innerHTML = ``;
+            }
+        }else{
+            konten = "";
+            loadmore.innerHTML = ``;
         }
-        konten += `
-            <li>
-                <div class='info icon'>
-                    <div class='cover'>
-                        <img src='`+photo+`'>
-                    </div>
-                    <div>
-                        <span>`+data[i].nama+`</span>
-                        <small>`+data[i].email+`</small>
-                    </div>
-                </div>
-                <div class='opsi'>
-                    <button>
-                        <span>Lihat</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                            <path fill-rule="evenodd" d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                </div>
-            </li>
-        `;  
+
+        setTimeout(()=>{
+            let data = dataList[namaList];        
+            let jumlahpertampilan = defaultTampilkan[namaList];
+            let batastampil = 0;
+
+            if(keywordSearch[namaList].split("").length == 0){
+                batastampil = tampilkanmulaidari + jumlahpertampilan;
+            }else{
+                batastampil = jumlah;
+                tampilkanmulaidari = 0;
+            }
+    
+            for(let i=tampilkanmulaidari; i< batastampil; i++){
+    
+                if(i < jumlah){
+    
+                    let photo = Baseurl + "assets/admin/images/default.png";
+                    if(data[i].photo != ''){
+                        photo = data[i].photo;
+                    }
+                    konten += `
+                        <li>
+                            <div class='info icon'>
+                                <div class='cover'>
+                                    <img src='`+photo+`'>
+                                </div>
+                                <div>
+                                    <span>`+data[i].nama+`</span>
+                                    <small>`+data[i].email+`</small>
+                                </div>
+                            </div>
+                            <div class='opsi'>
+                                <button>
+                                    <span>Lihat</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                        <path fill-rule="evenodd" d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </li>
+                    `; 
+    
+                } 
+    
+            }
+    
+            tampilkanmulaidari += jumlahpertampilan;
+    
+            if(tampilkanmulaidari < jumlah){
+                if(loadmore){
+                    loadmore.innerHTML = `
+                        <div class='card-footer'>
+                            <div class='center'>
+                                <button id='loadMore`+namaList+`'>Tampilkan lainnya</button>
+                            </div>
+                        </div>
+                    `;
+
+                    search.innerHTML = `
+                        <div class='card-header-search'>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd" />
+                            </svg>
+                            <input id='searchinput`+namaList+`' type='text' placeholder='Ketik sesuatu untuk mencari (tekan ctrl + /)' data-keyboard='191'>
+                        </div>
+                    `;
+
+                    el('#searchinput'+namaList).addEventListener('keyup', (e)=>{
+                        let to = "";
+                        if(to){
+                            clearTimeout(to);
+                        }
+                        keywordSearch[namaList] = e.target.value;
+                        to = setTimeout(()=>{
+                            loadKonten();
+                        },2000);
+                    });
+        
+                    el('#loadMore'+namaList).addEventListener('click', ()=>{
+                        loadKonten();
+                    });
+                }
+            }else{
+                if(loadmore){
+                    loadmore.innerHTML = ``;
+                }
+            }
+    
+            showBox.innerHTML = `
+            <ul class='unset-cursor'>
+                `+konten+`
+            </ul>`;
+        },1000);
+
     }
-    showBox.innerHTML = `
-        <ul class='unset-cursor'>
-            `+konten+`
-        </ul>
-    `;
+
+    loadKonten();
+
 }

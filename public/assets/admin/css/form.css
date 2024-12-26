@@ -191,7 +191,7 @@ body.dark-mode textarea {
 body.dark-mode input::placeholder,
 body.dark-mode select::placeholder,
 body.dark-mode textarea::placeholder {
-    color: var(--dark-light);
+    color: var(--dark-abu3);
 }
 
 
@@ -211,11 +211,19 @@ body.dark-mode textarea::placeholder {
     color: var(--abu3);
 }
 
+body.dark-mode .form-grup svg {
+    color: var(--dark-putih);
+}
+
 .form-grup .loader-mini {
     position: absolute;
     right: 15px;
     top: 37px;
     color: var(--abu3);
+}
+
+body.dark-mode .form-grup .loader-mini { 
+    color: var(--dark-putih);
 }
 
 .form-grup svg.action,
@@ -261,6 +269,10 @@ input[type="number"] {
 
 input::placeholder {
     color: var(--abu2);
+}
+
+body.dark-mode input::placeholder {
+    color: var(--dark-abu3);
 }
 
 input[data-padding='right-icon'].form-control {
@@ -393,6 +405,10 @@ body.dark-mode .calender > div:nth-child(2) > div:nth-child(3) {
     margin: 0 auto;
 }
 
+body.dark-mode .loader {
+    border: 6px solid var(--dark-putih);
+}
+
 .loader-mini {
     width: 20px;
     aspect-ratio: 1;
@@ -401,6 +417,10 @@ body.dark-mode .calender > div:nth-child(2) > div:nth-child(3) {
     animation:
     l20-1 0.8s infinite linear alternate,
     l20-2 1.6s infinite linear;
+}
+
+body.dark-mode .loader-mini {
+    border: 3px solid var(--dark-putih);
 }
 
 @keyframes l20-1{
