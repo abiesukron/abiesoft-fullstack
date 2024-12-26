@@ -58,6 +58,17 @@ final class Template_fdd2aa2d1c extends Latte\Runtime\Template
                 </a>
             </li>
             <li>
+                <a href=\'';
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 38 */;
+		echo 'admin/v1/test/read/chat\'>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                        <path d="M3.505 2.365A41.369 41.369 0 0 1 9 2c1.863 0 3.697.124 5.495.365 1.247.167 2.18 1.108 2.435 2.268a4.45 4.45 0 0 0-.577-.069 43.141 43.141 0 0 0-4.706 0C9.229 4.696 7.5 6.727 7.5 8.998v2.24c0 1.413.67 2.735 1.76 3.562l-2.98 2.98A.75.75 0 0 1 5 17.25v-3.443c-.501-.048-1-.106-1.495-.172C2.033 13.438 1 12.162 1 10.72V5.28c0-1.441 1.033-2.717 2.505-2.914Z"></path>
+                        <path d="M14 6c-.762 0-1.52.02-2.271.062C10.157 6.148 9 7.472 9 8.998v2.24c0 1.519 1.147 2.839 2.71 2.935.214.013.428.024.642.034.2.009.385.09.518.224l2.35 2.35a.75.75 0 0 0 1.28-.531v-2.07c1.453-.195 2.5-1.463 2.5-2.915V8.998c0-1.526-1.157-2.85-2.729-2.936A41.645 41.645 0 0 0 14 6Z"></path>
+                    </svg>
+                    <span>ChatAi</span>
+                </a>
+            </li>
+            <li>
                 <a href=\'javascript:void(0)\'>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                         <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd"></path>
@@ -183,7 +194,7 @@ final class Template_fdd2aa2d1c extends Latte\Runtime\Template
             <div>UI</div>
             <li>
                 <a href=\'';
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 162 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 171 */;
 		echo 'admin/v1/test/read/form\'>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                         <path d="M5.625 3.75a2.625 2.625 0 1 0 0 5.25h12.75a2.625 2.625 0 0 0 0-5.25H5.625ZM3.75 11.25a.75.75 0 0 0 0 1.5h16.5a.75.75 0 0 0 0-1.5H3.75ZM3 15.75a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75ZM3.75 18.75a.75.75 0 0 0 0 1.5h16.5a.75.75 0 0 0 0-1.5H3.75Z"></path>
@@ -206,7 +217,7 @@ final class Template_fdd2aa2d1c extends Latte\Runtime\Template
     <div class=\'sidebar-bottom\'>
         <div class=\'cover\'>
             <img src=\'';
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 183 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($url)) /* line 192 */;
 		echo 'assets/admin/images/default.png\'>
         </div>
         <div class=\'info\'>

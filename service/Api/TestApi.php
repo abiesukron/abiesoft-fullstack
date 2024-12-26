@@ -2,10 +2,12 @@
 
 namespace App\Service\Api;
 
+use Abiesoft\Resources\Http\Lanjut;
 use Abiesoft\Resources\Package\Ai;
-use Abiesoft\Resources\Package\ReadmeMDViewer;
+use Abiesoft\Resources\Utilities\Config;
 use Abiesoft\Resources\Utilities\Cookies;
 use Abiesoft\Resources\Utilities\Generate;
+use Abiesoft\Resources\Utilities\Input;
 use Abiesoft\Resources\Utilities\Reader;
 use App\Model\Test;
 use App\Service\Service;
@@ -145,7 +147,13 @@ class TestApi extends Service
 
     protected function keep()
     {
-        Test::insert();
+        echo Ai::chat(Input::get('text'));
+        // die();
+        // if(Input::get('__method') == 'chat'){
+            
+        // }else{
+        //     Test::insert();
+        // }
     }
 
     protected function replace()

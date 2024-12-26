@@ -1142,6 +1142,97 @@ body.dark-mode .card-list > ul > li > .opsi button{
     display: block;
 }
 
+.card-chat {
+    position: relative;
+    padding: 20px 30px;
+    height: 75vh;
+}
+
+.card-chat > .card-form {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 20px 30px;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.card-chat > .card-area {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    right: 30px;
+    bottom: 100px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.card-chat > .card-area::-webkit-scrollbar {
+    width: 5px;
+}
+
+.card-chat > .card-area::-webkit-scrollbar-track {
+    width: 5px;
+    background-color: var(--light);
+}
+
+.card-chat > .card-area::-webkit-scrollbar-thumb {
+    width: 5px;
+    background-color: var(--abu);
+}
+
+.card-chat > .card-form > form > .form-input {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--abu);
+}
+
+body.dark-mode .card-chat > .card-form > form > .form-input {
+    border: 1px solid var(--dark-light)
+}
+
+.card-chat > .card-form > form > .form-input > input {
+    display: block;
+    width: 100%;
+    padding: 20px 80px 20px 20px;
+    border: none;
+    background: none;
+}
+
+.card-chat > .card-form > form > .form-button > button {
+    position: absolute;
+    top: 35px;
+    right: 45px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    background-color: var(--primary);
+    color: var(--putih);
+}
+
+body.dark-mode .card-chat > .card-form > form > .form-button > button {
+    background-color: var(--dark-primary);
+    color: var(--dark-putih);
+}
+
+body.dark-mode .card-chat .blok-chat {
+    position: relative;
+    display: block;
+    padding: 20px;
+}
+
+body.dark-mode .card-chat .blok-chat:after {
+    clear: both;
+}
+
+body.dark-mode .card-chat .blok-chat > .me{
+    float: right;
+}
+
+body.dark-mode .card-chat .blok-chat > .you{
+    float: left;
+    right: 0;
+}
+
 .card-footer {
     padding: 20px 30px;
 }

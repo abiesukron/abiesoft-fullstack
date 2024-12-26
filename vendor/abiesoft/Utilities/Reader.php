@@ -4,9 +4,9 @@ namespace Abiesoft\Resources\Utilities;
 
 class Reader {
 
-    public static function secretCode($data, $key) {
-        $cipher = "aes-128-cbc";
-        $ciphertext_dec = base64_decode($data);
+    public static function secretCode($secretcode, $key) {
+        $cipher = "id-aes128-wrap";
+        $ciphertext_dec = base64_decode($secretcode);
         $ivlen = openssl_cipher_iv_length($cipher);
         $iv = substr($ciphertext_dec, 0, $ivlen);
         $ciphertext = substr($ciphertext_dec, $ivlen);

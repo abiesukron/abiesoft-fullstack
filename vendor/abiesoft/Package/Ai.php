@@ -4,6 +4,7 @@ namespace Abiesoft\Resources\Package;
 
 use Abiesoft\Resources\Utilities\Config;
 use OpenAI;
+use Parsedown;
 
 class Ai {
 
@@ -19,8 +20,10 @@ class Ai {
         ]);
 
         $teks = $result->choices[0]->message->content;
+        $parsedown = new Parsedown;
+        $html = $parsedown->text($teks);
         
-        echo nl2br(htmlspecialchars($teks, ENT_QUOTES, 'UTF-8'));
+        echo $html;
     }
 
 }

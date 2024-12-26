@@ -1,0 +1,59 @@
+{layout '../../../main.latte'}
+{block title}{$title}{/block}
+{block content}
+<div class='container'>
+    <div class='row'>
+        <div class='col-12'>
+            <div class='card'>
+                <div class='card-chat'>
+                    <div class='card-area' id='showResult'>
+                        <div>Area Obrolan</div>
+                        <div id='showResult'><div id='arealoading'></div></div>
+                    </div>
+                    <div class='card-form'>
+                        <form method='action' id='formChat' name='formChat' onSubmit='return getChatGPT();'>
+                            <div class='form-input'>
+                                <input type='text' id='text' name='text' placeholder='Ketik sesuatu lalu enter'>
+                            </div>
+                            <div class='form-button'>
+                                <button id='submitBtn'>Kirim</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{block js}
+<script>
+let resultKonten = "";
+function getChatGPT() {
+    let txt = el("#text");
+    resultKonten += `<div class='block-chat'><div class='me'>`+txt.value+`</div><div id='arealoading'></div></div>`;
+    el('#showResult').innerHTML = resultKonten;
+    setTimeout(()=>{
+        let arealoading = el("#arealoading");
+        arealoading.innerHTML = "Mohon tunggu ..";
+        const form = el('form[id="formChat"]');
+        const formData = new FormData(formChat);
+        fetch(Baseurl + 'api/test', {
+            method: 'POST',
+            body: formData,
+            headers: HEADERFORM
+        }).then(response => response.text()).then(res => {
+            resultKonten += "<div class='you'>"+res+"</div>";
+            el('#showResult').innerHTML = resultKonten;
+            txt.value = "";
+            return false;
+        }).catch(error => {        
+            console.log(error);
+            return false;
+        });
+        return false;
+    });
+    return false;
+}
+
+</script>
+{/block}
