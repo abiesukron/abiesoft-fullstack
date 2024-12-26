@@ -18,6 +18,15 @@
     "require": {
         "symfony/yaml": "^7.1",
         "nette/nette": "^3.2",
-        "nette/utils": "^4.0"
+        "nette/utils": "^4.0",
+        "openai-php/client": "*",
+        "symfony/http-client": "^7.2",
+        "nyholm/psr7": "^1.8",
+        "erusev/parsedown": "^1.7"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     }
 }
