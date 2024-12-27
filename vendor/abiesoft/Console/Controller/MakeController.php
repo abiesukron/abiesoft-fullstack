@@ -63,6 +63,8 @@ class MakeController
         fwrite($file, $isi);
         $isi = "            page: '" . strtolower(explode("Controller", $nama)[0]) . "/index',\n";
         fwrite($file, $isi);
+        $isi = "            model: 'admin', // Model admin untuk memanggil halaman admin dan model website untuk memanggil halaman website\n";
+        fwrite($file, $isi);
         $isi = "            data: [\n";
         fwrite($file, $isi);
         $isi = "                'title' => '" . explode("Controller", $nama)[0] . "',\n";
