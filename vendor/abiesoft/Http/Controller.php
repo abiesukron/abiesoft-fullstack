@@ -20,7 +20,7 @@ class Controller {
         $grupid_sesi = "",
         $namagrup_sesi = "";
 
-    public function view(String $page, String $model, array $data){
+    public function view(String $page, String $model = 'admin', array $data){
         $finaldata = [];
 
         $d = new Controller;
@@ -51,7 +51,13 @@ class Controller {
         }
 
         if(explode("/", $page)[0] == "website"){
-
+            if (file_exists($dir . "templates/website/page/" . $page . ".latte")) {
+                $latte->render($dir . "templates/website/page/" . $page . ".latte", $finaldata);
+                die();
+            } else {
+                $latte->render($dir . "templates/error/404.latte", $finaldata);
+                die();
+            }
         }
 
     }
