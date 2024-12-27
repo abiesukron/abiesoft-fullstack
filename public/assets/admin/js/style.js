@@ -170,3 +170,19 @@ document.addEventListener('keydown', function(event) {
         }
     }
 });
+
+
+let currentPage = document.querySelectorAll('li[data-current]');
+if(currentPage){
+    let current = window.location.pathname.split('/')[3];
+    if(!current){
+        current = '/';
+    }
+    for(let i=0; i<currentPage.length; i++){
+        if(currentPage[i].dataset.current == current){
+            currentPage[i].setAttribute('class','active');
+        }else{
+            currentPage[i].removeAttribute('class');
+        }
+    }
+}
