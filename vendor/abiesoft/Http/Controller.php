@@ -20,7 +20,7 @@ class Controller {
         $grupid_sesi = "",
         $namagrup_sesi = "";
 
-    public function view(String $page, String $model = 'admin', array $data){
+    public function view(String $page, String $model = 'website', array $data){
         $finaldata = [];
 
         $d = new Controller;
@@ -40,7 +40,7 @@ class Controller {
         $latte = new Engine();
         $latte->setTempDirectory($dir . "temp");
 
-        if($model == "admin"){
+        if($model == explode('/',Config::env('ADMIN_PANEL'))[0]){
             if (file_exists($dir . "templates/admin/page/" . $page . ".latte")) {
                 $latte->render($dir . "templates/admin/page/" . $page . ".latte", $finaldata);
                 die();
